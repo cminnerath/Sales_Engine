@@ -17,6 +17,5 @@ class SalesEngine
 
 end
 
-
 se = SalesEngine.new
 puts se.start
