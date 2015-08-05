@@ -1,3 +1,0 @@
-class Merchants
-  
-end
