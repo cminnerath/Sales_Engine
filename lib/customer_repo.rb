@@ -15,6 +15,18 @@ class CustomerRepo
     rows.map { |row| @customers[row[:id]] = Customer.new(row) }
     @customers
   end
+
+  def find_all
+    @customers
+  end
+
+  def find_random
+    @customers.sample
+  end
   #repo will have alot of the methods. Keep SE away from Loader AND CSV
+
+  def find_by_id(id)
+    @customers.find_by(:id, id)
+  end
 
 end

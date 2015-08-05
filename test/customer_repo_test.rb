@@ -4,18 +4,25 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
 require "./lib/customer_repo"
+require "./lib/sales_engine"
 
 
 class CustomerRepoTest < Minitest::Test
 
-  def test_it_puts_data_in_correct_columns
+
+  def test_it_can_find_all
     skip
-    
-		file = "./data/customers_fixture.csv"
-		customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-    cr = CustomerRepo.new(customer_csv, self)
-    result = "wow"
-	  require "pry";binding.pry
-    assert_equal result, cr
+    custtest = CustomerRepo.new(CustomerLoader.new.load_all("./data/customers_fixture.csv"), nil)
+    cust = custtest.find_all
+    assert_equal Hash, cust.class
   end
+
+  def test_other_method
+    custtest = CustomerRepo.new("./data/customers_fixture.csv", nil)
+    cust = custtest.find_all
+    assert_equal Hash, cust.class
+  end
+
+
+
 end
