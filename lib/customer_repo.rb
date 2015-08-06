@@ -30,20 +30,19 @@ class CustomerRepo
   end
 
   def find_by_first_name(first_name)
-    customers.detect { |value| value.first_name.downcase == first_name.downcase }
-    require "pry";binding.pry
+    customers.detect { |key, value| value.first_name.downcase == first_name.downcase }.last
   end
 
   def find_by_last_name(last_name)
-    customers.select{ |key, value| value.last_name.downcase == last_name.downcase }
+    customers.detect { |key, value| value.last_name.downcase == last_name.downcase }.last
   end
 
   def find_by_creation_date(date)
-    customers.select { |key, value| value.created_at == date }
+    customers.detect { |key, value| value.created_at == date }.last
   end
 
   def find_by_updated_date(date)
-    customers.select { |key, value| value.created_at == date }
+    customers.detect { |key, value| value.created_at == date }.last
   end
 
   def find_all_by_first_name(first_name)
