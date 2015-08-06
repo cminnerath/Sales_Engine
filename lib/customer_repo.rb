@@ -17,6 +17,13 @@ class CustomerRepo
     @customers
   end
 
+  def find_all
+    @customers
+  end
+
+  def find_random
+    @customers.keys.sample
+  end
 
   def find_by_id(id)
     customers.select { |key, value| value.id == id }
@@ -27,20 +34,34 @@ class CustomerRepo
   end
 
   def find_by_last_name(last_name)
-    customers.select { |key, value| value.last_name == last_name }
+    customers.select{ |key, value| value.last_name.downcase == last_name.downcase }
   end
 
-  def find_all_by_name(first_name)
-    matches = @customers.select {|key, value| value.first_name.downcase == first_name.downcase }
+  def find_by_creation_date(date)
+    customers.select { |key, value| value.created_at == date }
+  end
+
+  def find_by_updated_date(date)
+    customers.select { |key, value| value.created_at == date }
+  end
+
+  def find_all_by_first_name(first_name)
+    matches = customers.select {|key, value| value.first_name.downcase == first_name.downcase }
     matches.map {|key, value| value}
   end
 
-  def find_all
-    @customers
+  def find_all_by_last_name(last_name)
+    matches = customers.select {|key, value| value.last_name.downcase == last_name.downcase }
+    matches.map {|key, value| value}
   end
 
-  def find_random
-    @customers.keys.sample
+  def find_all_by_creation_date(created_at)
+    matches = customers.select {|key, value| value.created_at == created_at }.to_a
+    matches.map {|key, value| value}
   end
 
+  def find_all_by_updated_date(updated_at)
+    matches = customers.select {|key, value| value.updated_at == updated_at }.to_a
+    matches.map {|key, value| value}
+  end
 end
