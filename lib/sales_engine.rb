@@ -4,8 +4,8 @@ require_relative 'customer_repo'
 
 class SalesEngine
 
-  attr_reader :customer_repo,
-              :customer_data
+  attr_accessor :customer_repo,
+                :customer_data
 
   def initialize
     @customer_data = CustomerLoader.new.load_all
