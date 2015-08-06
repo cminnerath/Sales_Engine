@@ -17,6 +17,7 @@ class CustomerRepo
     @customers
   end
 
+
   def find_by_id(id)
     customers.select { |key, value| value.id == id }
   end
@@ -34,13 +35,12 @@ class CustomerRepo
     matches.map {|key, value| value}
   end
 
-
   def find_all
     @customers
   end
 
-   def find_random
-     @customers.keys.sample
-   end
+  def find_random
+    @customers.keys.sample
+  end
 
 end
