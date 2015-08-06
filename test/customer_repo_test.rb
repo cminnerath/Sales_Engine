@@ -28,8 +28,9 @@ class CustomerRepoTest < Minitest::Test
   def test_it_finds_single_match_for_first_name
     rows = CustomerLoader.new.load_all('./data/customers_fixture.csv')
     cr = CustomerRepo.new(rows, "sales_engine")
-    result = cr.customers["6"]
-    assert_equal result, cr.find_by_first_name( "Sylvester").values[0]
+    result = cr.customers["1"]
+    require "pry";binding.pry
+    assert_equal result, cr.find_by_first_name("Joey").values[0]
   end
 
   def test_it_finds_single_match_for_last_name

@@ -30,7 +30,8 @@ class CustomerRepo
   end
 
   def find_by_first_name(first_name)
-    customers.select { |key, value| value.first_name.downcase == first_name.downcase }
+    customers.detect { |value| value.first_name.downcase == first_name.downcase }
+    require "pry";binding.pry
   end
 
   def find_by_last_name(last_name)
