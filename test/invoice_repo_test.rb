@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
 require "./lib/invoice"
-
-class InvoiceTest < Minitest::test
-
+require "./lib/invoice_repo"
+require "./lib/sales_engine"
+class InvoiceRepoTest < Minitest::Test
 end
