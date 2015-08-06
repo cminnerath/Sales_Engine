@@ -29,28 +29,28 @@ class CustomerRepoTest < Minitest::Test
     rows = CustomerLoader.new.load_all('./data/customers_fixture.csv')
     cr = CustomerRepo.new(rows, "sales_engine")
     result = cr.customers["6"]
-    assert_equal result, cr.find_by_first_name( "Sylvester").values[0]
+    assert_equal result, cr.find_by_first_name( "Sylvester")
   end
 
   def test_it_finds_single_match_for_last_name
     rows = CustomerLoader.new.load_all('./data/customers_fixture.csv')
     cr = CustomerRepo.new(rows, "sales_engine")
     result = cr.customers["7"]
-    assert_equal result, cr.find_by_last_name("Kuhn").values[0]
+    assert_equal result, cr.find_by_last_name("Kuhn")
   end
 
   def test_it_can_find_customers_by_creation_date
     rows = CustomerLoader.new.load_all('./data/customers_fixture.csv')
     cr = CustomerRepo.new(rows, "sales_engine")
     result = cr.customers["7"]
-    assert_equal result, cr.find_by_creation_date("2012-03-27 14:54:11 UTC").values[0]
+    assert_equal result, cr.find_by_creation_date("2012-03-27 14:54:11 UTC")
   end
 
   def test_it_can_find_customers_by_updated_date
     rows = CustomerLoader.new.load_all('./data/customers_fixture.csv')
     cr = CustomerRepo.new(rows, "sales_engine")
     result = cr.customers["7"]
-    assert_equal result, cr.find_by_updated_date("2012-03-27 14:54:11 UTC").values[0]
+    assert_equal result, cr.find_by_updated_date("2012-03-27 14:54:11 UTC")
   end
 
   def test_it_finds_all_matches_for_first_name
