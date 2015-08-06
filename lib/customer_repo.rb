@@ -26,7 +26,7 @@ class CustomerRepo
   end
 
   def find_by_id(id)
-    customers.select { |key, value| value.id == id }
+    customers.detect { |key, value| value.id == id }.last
   end
 
   def find_by_first_name(first_name)
