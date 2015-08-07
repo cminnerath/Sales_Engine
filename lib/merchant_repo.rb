@@ -5,11 +5,11 @@ class MerchantRepo
 
   attr_reader :merchants
   def initialize(rows, sales_engine)
-    @merchants ||= load_transactions(rows)
+    @merchants ||= load_merchants(rows)
     @sales_engine = sales_engine
   end
 
-  def load_transactions(rows)
+  def load_merhants(rows)
     @merchants = Hash.new(rows)
     rows.map {|row| @merchants[row[:id]] = Merchant.new(row) }
     @merchants
