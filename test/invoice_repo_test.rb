@@ -29,4 +29,32 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal result, ir.find_by_id(1)
   end
 
+  def test_it_can_find_by_customer_id
+    rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
+    ir = InvoiceRepo.new(rows, "sales_engine")
+    result = ir.invoice["1"]
+    assert_equal result, ir.find_by_customer_id(1)
+  end
+
+  def test_it_can_find_by_merchant_id
+    rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
+    ir = InvoiceRepo.new(rows, "sales_engine")
+    result = ir.invoice["1"]
+    assert_equal result, ir.find_by_merchant_id(26)
+  end
+
+  def test_it_can_find_by_creation_date
+    rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
+    ir = InvoiceRepo.new(rows, "sales_engine")
+    result = ir.invoice["1"]
+    assert_equal result, ir.find_by_creation_date("2012-03-25 09:54:09 UTC")
+  end
+
+  def test_it_can_find_by_updated_date
+    rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
+    ir = InvoiceRepo.new(rows, "sales_engine")
+    result = ir.invoice["1"]
+    assert_equal result, ir.find_by_updated_date("2012-03-25 09:54:09 UTC")
+  end
+
 end

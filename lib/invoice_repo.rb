@@ -27,7 +27,7 @@ class InvoiceRepo
     invoice.detect { |key, value| value.id == id }.last
   end
 
-  def find_by_first_name(customer_id)
+  def find_by_customer_id(customer_id)
     invoice.detect { |key, value| value.customer_id. == customer_id }.last
   end
 
