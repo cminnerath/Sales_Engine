@@ -12,7 +12,7 @@ class CustomerRepo
 
   def load_customers(rows)
     @customers = Hash.new(0)
-    rows.map { |row| @customers[row[:id]] = Customer.new(row) }
+    rows.map { |row| @customers[row[:id]] = Customer.new(row, self) }
     @customers
   end
 
