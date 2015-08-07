@@ -1,9 +1,9 @@
-require_relative 'customer'           # => true, false
-require_relative './customer_loader'  # => false, true
+require_relative 'customer'
+require_relative './customer_loader'
 
 class CustomerRepo
 
-  attr_reader :customers  # => nil, nil
+  attr_reader :customers
 
   def initialize(rows, sales_engine)
     @customers ||= load_customers(rows)
@@ -17,11 +17,11 @@ class CustomerRepo
   end
 
   def find_all
-    @customers
+    customers
   end
 
   def find_random
-    @customers.keys.sample
+    customers.keys.sample
   end
 
   def find_by_id(id)
