@@ -33,4 +33,14 @@ class InvoiceTest < Minitest::Test
     assert_equal "shipped", status
   end
 
+  def test_it_can_access_created_at
+    created_at = setup[0].created_at
+    assert_equal "2012-03-25 09:54:09 UTC", created_at
+  end
+
+  def test_it_can_access_updated_date
+    updated_at = setup[0].updated_at
+    assert_equal "2012-03-25 09:54:09 UTC", updated_at
+  end
+
 end
