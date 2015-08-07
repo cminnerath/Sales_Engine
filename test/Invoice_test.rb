@@ -23,4 +23,14 @@ class InvoiceTest < Minitest::Test
     assert_equal 2, customer_id
   end
 
+  def test_it_can_access_merchant_id
+    merchant_id = setup[7].merchant_id
+    assert_equal 38, merchant_id
+  end
+
+  def test_it_can_access_status
+    status = setup[0].status
+    assert_equal "shipped", status
+  end
+
 end
