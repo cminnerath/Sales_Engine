@@ -5,8 +5,6 @@ Rake::TestTask.new do |t|
 end
 
 
-
-
 namespace :sanitation do
   desc "Check line lengths & whitespace with Cane"
   task :lines do
