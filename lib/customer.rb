@@ -13,7 +13,10 @@ class Customer
       @last_name    = parameters[:last_name]
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
+<<<<<<< HEAD
       @repo         = repo
+=======
+>>>>>>> master
     end
 
 end
