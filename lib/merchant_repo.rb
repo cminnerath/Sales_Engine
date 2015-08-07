@@ -9,7 +9,7 @@ class MerchantRepo
     @sales_engine = sales_engine
   end
 
-  def load_merhants(rows)
+  def load_merchants(rows)
     @merchants = Hash.new(rows)
     rows.map {|row| @merchants[row[:id]] = Merchant.new(row) }
     @merchants
