@@ -21,9 +21,9 @@ class SalesEngine
   end
 
   def start
-    @customer_repo    = CustomerRepo.new(@customer_data, self)
+    @customer_repo    ||= CustomerRepo.new(@customer_data, self)
     # @merchant_repo    = MerchantRepo.new(@merchant_data, self)
-    @invoice_repo     = InvoiceRepo.new(@invoice_data, self)
+    @invoice_repo     ||= InvoiceRepo.new(@invoice_data, self)
     # @item_repo        = ItemRepo.new(@item_data, self)
     # @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
     # @transaction_repo = TransactionRepo.new(@transaction_data, self)
