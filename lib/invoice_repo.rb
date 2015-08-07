@@ -8,6 +8,7 @@ class InvoiceRepo
     @invoice ||= load_invoice(rows)
     @sales_engine = sales_engine
   end
+
   def load_invoice(rows)
     @invoice = Hash.new(0)
     rows.map { |row| @invoice[row[:id]] = Customer.new(row) }
@@ -26,12 +27,12 @@ class InvoiceRepo
     invoice.select { |key, value| value.id == id }
   end
 
-  def find_by_first_name(first_name)
-    invoice.select { |key, value| value.first_name.downcase == first_name.downcase }
+  def find_by_first_name(customer_id)
+    invoice.select { |key, value| value.customer_id == customer_id }
   end
 
-  def find_by_last_name(last_name)
-    invoice.select{ |key, value| value.last_name.downcase == last_name.downcase }
+  def find_by_merchant_id(merchant_id)
+    invoice.select{ |key, value| value.merchant_id == merchant_id }
   end
 
   def find_by_creation_date(date)
@@ -42,13 +43,13 @@ class InvoiceRepo
     invoice.select { |key, value| value.created_at == date }
   end
 
-  def find_all_by_first_name(first_name)
-    matches = invoice.select {|key, value| value.first_name.downcase == first_name.downcase }
+  def find_all_by_customer_id(customer_id)
+    matches = invoice.select {|key, value| value.customer_id == customer_id }
     matches.map {|key, value| value}
   end
 
-  def find_all_by_last_name(last_name)
-    matches = invoice.select {|key, value| value.last_name.downcase == last_name.downcase }
+  def find_all_by_merchant_id(merchant_id)
+    matches = invoice.select {|key, value| value.merchant_id == merchant_id }
     matches.map {|key, value| value}
   end
 

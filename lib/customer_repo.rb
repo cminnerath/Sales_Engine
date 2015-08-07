@@ -10,7 +10,6 @@ class CustomerRepo
     @sales_engine = sales_engine
   end
 
-
   def load_customers(rows)
     @customers = Hash.new(0)
     rows.map { |row| @customers[row[:id]] = Customer.new(row) }
