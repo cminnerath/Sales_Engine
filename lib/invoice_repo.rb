@@ -43,11 +43,6 @@ class InvoiceRepo
     invoice.detect { |key, value| value.created_at == updated_at }.last
   end
 
-
-  def find_by_updated_date(status)
-    invoice.detect { |key, value| value.status == status }.last
-  end
-
   def find_all_by_customer_id(customer_id)
     matches = invoice.select {|key, value| value.customer_id. == customer_id }
     matches.map {|key, value| value}

@@ -12,7 +12,7 @@ class ItemRepo
 
     def load_items(rows)
       @items = Hash.new(0)
-      rows.map { |row| @items[row[:id]] = Item.new(row) }
+      rows.map { |row| @items[row[:id]] = Item.new(row, self) }
       @items
     end
 

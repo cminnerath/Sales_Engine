@@ -51,7 +51,6 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_can_find_by_updated_date
-    skip
     rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
     ir = InvoiceRepo.new(rows, "sales_engine")
     result = ir.invoice["1"]
@@ -59,9 +58,17 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_finds_invoices_by_customer_id
+    skip
     rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
     ir = InvoiceRepo.new(rows, SalesEngine.new.start)
+    require "pry";binding.pry
     assert_equal "Joey", ir.find_customer_by_id(1).first_name
+  end
+
+  def test_we_wont_lose_our_minds
+    se = SalesEngine.new.start
+    result = se.find_customer_by_id(1)
+    assert_equal "Joey" , result
   end
 
 

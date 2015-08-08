@@ -1,6 +1,14 @@
 require 'csv'
-require_relative 'customer_loader'
 require_relative 'customer_repo'
+require_relative 'customer_loader'
+require_relative 'merchant_repo'
+require_relative 'merchant_loader'
+require_relative 'item_repo'
+require_relative "item_loader"
+require_relative 'transaction_repo'
+require_relative "transaction_loader"
+require_relative "invoice_repo"
+require_relative "invoice_loader"
 
 class SalesEngine
 
@@ -13,44 +21,27 @@ class SalesEngine
 
   def initialize
     @customer_data        = CustomerLoader.new.load_all
-<<<<<<< HEAD
     # @merchant_data        = MerchantLoader.new.load_all
     @invoice_data         = InvoiceLoader.new.load_all
-    # @item_data            = ItemLoader.new.load_all
+    @item_data            = ItemLoader.new.load_all
     # @invoice_item_data    = InvoiceItemLoader.new.load_all
     # @transaction_data     = TransactionLoader.new.load_all
   end
 
   def start
     @customer_repo    ||= CustomerRepo.new(@customer_data, self)
-    # @merchant_repo    = MerchantRepo.new(@merchant_data, self)
+    # @merchant_repo    ||= MerchantRepo.new(@merchant_data, self)
     @invoice_repo     ||= InvoiceRepo.new(@invoice_data, self)
-    # @item_repo        = ItemRepo.new(@item_data, self)
-    # @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
-    # @transaction_repo = TransactionRepo.new(@transaction_data, self)
-=======
-    @merchant_data        = MerchantLoader.new.load_all
-    @invoice_data         = InvoiceLoader.new.load_all
-    @item_data            = ItemLoader.new.load_all
-    @invoice_item_data    = InvoiceItemLoader.new.load_all
-    @transaction_data     = TransactionLoader.new.load_all
-  end
-
-  def start
-    @customer_repo    = CustomerRepo.new(@customer_data, self)
-    @merchant_repo    = MerchantRepo.new(@merchant_data, self)
-    @invoice_repo     = InvoiceRepo.new(@invoice_data, self)
-    @item_repo        = ItemRepo.new(@item_data, self)
-    @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
-    @transaction_repo = TransactionRepo.new(@transaction_data, self)
->>>>>>> master
+    @item_repo        ||= ItemRepo.new(@item_data, self)
+    # @invoice_item_repo ||= InvoiceItemRepo.new(@invoice_item_data, self)
+    # @transaction_repo ||= TransactionRepo.new(@transaction_data, self)
   end
 
   def find_customer_by_id(id)
-    customer_repo.find_by_id(id)
+    @customer_repo.find_by_id(id)
   end
 
 end
 
-se = SalesEngine.new
-puts se.start
+# se = SalesEngine.new
+# puts se.start
