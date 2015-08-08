@@ -11,7 +11,7 @@ class InvoiceRepo
 
   def load_invoice(rows)
     @invoice = Hash.new(0)
-    rows.map { |row| @invoice[row[:id]] = Invoice.new(row) }
+    rows.map { |row| @invoice[row[:id]] = Invoice.new(row, self) }
     @invoice
   end
 
@@ -35,12 +35,17 @@ class InvoiceRepo
     invoice.detect{ |key, value| value.merchant_id. == merchant_id }.last
   end
 
-  def find_by_creation_date(date)
-    invoice.detect { |key, value| value.created_at == date }.last
+  def find_by_creation_date(created_at)
+    invoice.detect { |key, value| value.created_at == created_at }.last
   end
 
-  def find_by_updated_date(date)
-    invoice.detect { |key, value| value.created_at == date }.last
+  def find_by_updated_date(updated_at)
+    invoice.detect { |key, value| value.created_at == updated_at }.last
+  end
+
+
+  def find_by_updated_date(status)
+    invoice.detect { |key, value| value.status == status }.last
   end
 
   def find_all_by_customer_id(customer_id)
@@ -61,6 +66,10 @@ class InvoiceRepo
   def find_all_by_updated_date(updated_at)
     matches = invoice.select {|key, value| value.updated_at == updated_at }.to_a
     matches.map {|key, value| value}
+  end
+
+  def find_customer_by_id(id)
+    @sales_engine.find_customer_by_id(id)
   end
 
 end
