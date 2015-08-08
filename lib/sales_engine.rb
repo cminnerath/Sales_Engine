@@ -13,6 +13,7 @@ class SalesEngine
 
   def initialize
     @customer_data        = CustomerLoader.new.load_all
+<<<<<<< HEAD
     # @merchant_data        = MerchantLoader.new.load_all
     @invoice_data         = InvoiceLoader.new.load_all
     # @item_data            = ItemLoader.new.load_all
@@ -27,6 +28,22 @@ class SalesEngine
     # @item_repo        = ItemRepo.new(@item_data, self)
     # @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
     # @transaction_repo = TransactionRepo.new(@transaction_data, self)
+=======
+    @merchant_data        = MerchantLoader.new.load_all
+    @invoice_data         = InvoiceLoader.new.load_all
+    @item_data            = ItemLoader.new.load_all
+    @invoice_item_data    = InvoiceItemLoader.new.load_all
+    @transaction_data     = TransactionLoader.new.load_all
+  end
+
+  def start
+    @customer_repo    = CustomerRepo.new(@customer_data, self)
+    @merchant_repo    = MerchantRepo.new(@merchant_data, self)
+    @invoice_repo     = InvoiceRepo.new(@invoice_data, self)
+    @item_repo        = ItemRepo.new(@item_data, self)
+    @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
+    @transaction_repo = TransactionRepo.new(@transaction_data, self)
+>>>>>>> master
   end
 
   def find_customer_by_id(id)

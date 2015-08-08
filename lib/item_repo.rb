@@ -1,1 +1,82 @@
+require_relative 'item'
+require_relative './item_loader'
 
+class ItemRepo
+
+    attr_reader :items
+
+    def initialize(rows, sales_engine)
+      @items ||= load_items(rows)
+      @sales_engine = sales_engine
+    end
+
+    def load_items(rows)
+      @items = Hash.new(0)
+      rows.map { |row| @items[row[:id]] = Item.new(row) }
+      @items
+    end
+
+    def find_all
+      items
+    end
+
+    def find_random
+      items.keys.sample
+    end
+
+    def find_by_id(id)
+      items.detect { |key, value| value.id == id }.last
+    end
+
+    def find_by_name(name)
+      items.detect { |key, value| value.name == name}.last
+    end
+
+    def find_by_description(description)
+      items.detect { |key, value| value.description == description}.last
+    end
+
+    def find_by_unit_price(unit_price )
+      items.detect { |key, value| value.unit_price  == unit_price.to_s }.last
+    end
+
+    def find_by_creation_date(date)
+      items.detect { |key, value| value.created_at == date }.last
+    end
+
+    def find_by_updated_date(date)
+      items.detect { |key, value| value.created_at == date }.last
+    end
+
+    def find_all_by_name(name)
+      matches = items.select {|key, value| value.name.downcase == name.downcase }
+      matches.map {|key, value| value}
+    end
+
+    def find_all_by_description(description)
+      matches = items.select {|key, value| value.description.downcase == description.downcase }
+      matches.map {|key, value| value}
+    end
+
+    def find_all_by_unit_price(unit_price)
+      matches = items.select {|key, value| value.unit_price == unit_price.to_s}
+      matches.map {|key, value| value}
+    end
+
+    def find_all_by_merchant_id(merchant_id)
+      matches = items.select {|key, value| value.merchant_id == value.merchant_id.to_s}
+      matches.map {|key, value| value}
+    end
+
+    def find_all_by_creation_date(created_at)
+      matches = items.select {|key, value| value.created_at == created_at }.to_a
+      matches.map {|key, value| value}
+    end
+
+    def find_all_by_updated_date(updated_at)
+      matches = items.select {|key, value| value.updated_at == updated_at }.to_a
+      matches.map {|key, value| value}
+    end
+
+
+end
