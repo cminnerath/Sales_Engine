@@ -12,7 +12,7 @@ class CustomerTest < Minitest::Test
 		customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
 		customer_collection = customer_csv.map { |row| Customer.new(row) }
 		id = customer_collection[0].id
-    assert_equal "1" , id
+    assert_equal 1 , id
   end
 
   def test_it_can_access_customers_first_name
