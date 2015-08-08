@@ -1,5 +1,5 @@
 require_relative 'customer'
-require_relative './customer_loader'
+require_relative 'customer_loader'
 
 class CustomerRepo
 
@@ -63,4 +63,5 @@ class CustomerRepo
     matches = customers.select {|key, value| value.updated_at == updated_at }.to_a
     matches.map {|key, value| value}
   end
+
 end

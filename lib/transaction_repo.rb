@@ -11,8 +11,8 @@ class TransactionRepo
   end
 
   def load_transactions(rows)
-    @transactions = Hash.new(rows)
-    rows.map {|row| @transactions[row[:id]] = Transaction.new(row) }
+    @transactions = Hash.new(0)
+    rows.map {|row| @transactions[row[:id]] = Transaction.new(row, self) }
     @transactions
   end
 
