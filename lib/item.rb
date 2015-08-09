@@ -6,7 +6,8 @@ class Item
               :unit_price,
               :merchant_id,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repo
 
     def initialize(parameters, repo)
       @id           = parameters[:id].to_i
@@ -16,6 +17,10 @@ class Item
       @merchant_id   = parameters[:merchant_id].to_i
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
-      @repo = repo
+      @repo         = repo
+    end
+
+    def merchant
+      repo.find_merchant_by_item(merchant_id)
     end
 end

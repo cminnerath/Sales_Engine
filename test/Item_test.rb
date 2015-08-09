@@ -55,7 +55,10 @@ class ItemTest < Minitest::Test
     assert_equal 1, item.id
   end
 
-
-
+  def test_it_returns_a_merchant_associated_with_item
+    item = repo.find_by_merchant_id(1)
+    merchants = item.merchant
+    assert_equal "Schroeder-Jerde", merchants.name
+  end
 
 end

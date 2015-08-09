@@ -57,6 +57,10 @@ class SalesEngine
     merchant_repo.find_by_id(merchant_id)
   end
 
+  def find_merchant_by_item(merchant_id)
+    merchant_repo.find_by_id(merchant_id)
+  end
+
 end
 
 if __FILE__ == $0

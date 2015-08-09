@@ -3,7 +3,7 @@ require_relative './item_loader'
 
 class ItemRepo
 
-    attr_reader :items
+    attr_reader :items, :sales_engine
 
     def initialize(rows, sales_engine)
       @items ||= load_items(rows)
@@ -83,6 +83,10 @@ class ItemRepo
     def find_all_by_updated_date(updated_at)
       matches = items.select {|key, value| value.updated_at == updated_at }.to_a
       matches.map {|key, value| value}
+    end
+
+    def find_merchant_by_item(merchant_id)
+      sales_engine.find_merchant_by_item(merchant_id)
     end
 
 
