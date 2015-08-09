@@ -3,7 +3,7 @@ require_relative './transaction_loader'
 
 class TransactionRepo
 
-  attr_reader :transactions
+  attr_reader :transactions, :sales_engine
 
   def initialize(rows, sales_engine)
     @transactions ||= load_transactions(rows)
@@ -93,6 +93,10 @@ class TransactionRepo
   def find_all_by_updated_date(date)
     matches = transactions.select{|key,value| value.updated_at== date  }.to_a
     matches.map {|key, value| value}
+  end
+
+  def find_invoice_by_transaction(invoice_id)
+    sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
 

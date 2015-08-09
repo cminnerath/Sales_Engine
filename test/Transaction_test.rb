@@ -46,4 +46,10 @@ class TransactionTest < Minitest::Test
     assert_equal 3, tran.id
   end
 
+  def test_it_can_return_invoice_for_given_transaction
+    tran = repo.find_by_invoice_id(1)
+    invoice = tran.invoice
+    assert_equal 26, invoice.merchant_id
+  end
+
 end

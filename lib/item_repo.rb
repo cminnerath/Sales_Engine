@@ -70,7 +70,7 @@ class ItemRepo
 
     def find_all_by_merchant_id(merchant_id)
       matches = items.select do |key, value|
-        value.merchant_id == merchant_id.to_s
+        value.merchant_id == merchant_id
       end
       matches.map {|key, value| value}
     end

@@ -19,4 +19,8 @@ class Transaction
       @updated_at                     = parameters[:updated_at]
       @repo                           = repo
     end
+
+    def invoice
+      repo.find_invoice_by_transaction(invoice_id)
+    end
 end

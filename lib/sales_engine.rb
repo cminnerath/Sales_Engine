@@ -61,6 +61,10 @@ class SalesEngine
     merchant_repo.find_by_id(merchant_id)
   end
 
+  def find_invoice_by_transaction(invoice_id)
+    invoice_repo.find_by_id(invoice_id)
+  end
+
 end
 
 if __FILE__ == $0
