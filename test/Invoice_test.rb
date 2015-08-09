@@ -56,6 +56,7 @@ class InvoiceTest < Minitest::Test
   def test_it_returns_a_collection_of_associated_transaction_instances
     invoice = repo.find_by_id(8)
     transactions = invoice.transactions
+    require "pry"; binding.pry
     assert_equal [7], transactions.map {|invoice| invoice.id}
   end
 

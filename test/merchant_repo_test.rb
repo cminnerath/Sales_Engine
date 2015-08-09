@@ -48,10 +48,10 @@ class MerchantRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_merchants_by_creation_date
-    assert_equal 2, repo.find_all_by_creation_date("2012-03-27 14:54:00 UTC").count
+    assert_equal 3, repo.find_all_by_creation_date("2012-03-27 14:54:00 UTC").count
   end
 
   def test_it_finds_all_matches_by_updated_date
-    assert_equal 2, repo.find_all_by_updated_date("2012-03-27 14:54:00 UTC").count
+    assert_equal 3, repo.find_all_by_updated_date("2012-03-27 14:54:00 UTC").count
   end
 end

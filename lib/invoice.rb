@@ -18,7 +18,7 @@ class Invoice
   end
 
   def transactions
-    repo.find_transactions_for_invoice(id)
+    repo.find_transactions_for_invoice(invoice_id)
   end
 
   def merchant
