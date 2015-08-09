@@ -11,8 +11,8 @@ class Transaction
 
     def initialize(parameters, repo)
       @id                             = parameters[:id].to_i
-      @invoice_id                     = parameters[:invoice_id]
-      @credit_card_number             = parameters[:credit_card_number]
+      @invoice_id                     = parameters[:invoice_id].to_i
+      @credit_card_number             = parameters[:credit_card_number].to_i
       @credit_card_expiration_date    = parameters[:credit_card_expiration_date]
       @result                         = parameters[:result]
       @created_at                     = parameters[:created_at]

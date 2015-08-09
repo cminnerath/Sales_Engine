@@ -29,11 +29,12 @@ class TransactionRepo
   end
 
   def find_by_invoice_id(invoice_id)
-    transactions.detect { |key, value| value.invoice_id == invoice_id }.last
+    transactions.detect { |key, value| value.invoice_id == invoice_id.to_i }.last
   end
 
   def find_by_credit_card_number(credit_card_number)
     transactions.detect do |key, value|
+      # require "pry"; binding.pry
       value.credit_card_number == credit_card_number
     end.last
   end
