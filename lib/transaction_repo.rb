@@ -62,6 +62,13 @@ class TransactionRepo
     transactions.detect { |key, value| value.updated_at == date }.last
   end
 
+  def find_all_by_invoice_id(invoice_id)
+    matches = transactions.select do|key,value|
+      value.invoice_id  == invoice_id.to_s
+    end.to_a
+    matches.map {|key, value| value}
+  end
+
   def find_all_by_credit_card(number)
     matches = transactions.select{|key,value| value.credit_card_number == number }.to_a
     matches.map {|key, value| value}
@@ -86,4 +93,6 @@ class TransactionRepo
     matches = transactions.select{|key,value| value.updated_at== date  }.to_a
     matches.map {|key, value| value}
   end
+
+
 end

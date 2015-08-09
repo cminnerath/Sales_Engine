@@ -48,6 +48,15 @@ class SalesEngine
   def find_invoices_for_merchant(merchant_id)
     invoice_repo.find_all_by_merchant_id(merchant_id)
   end
+
+  def find_transactions_for_invoice(invoice_id)
+    transaction_repo.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_merchant_for_invoice(merchant_id)
+    merchant_repo.find_by_id(merchant_id)
+  end
+
 end
 
 if __FILE__ == $0

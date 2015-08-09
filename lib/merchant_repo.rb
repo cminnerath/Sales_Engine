@@ -30,6 +30,11 @@ class MerchantRepo
     merchants.detect { |key, value| value.id == id }.last
   end
 
+  def find_by_merchant_id(merchant_id)
+    require "pry";binding.pry
+    merchants.detect { |key, value| value.merchant_id == merchant_id }.last
+  end
+
   def find_by_name(name)
     merchants.detect { |key, value| value.name.downcase == name.downcase }.last
   end
@@ -64,4 +69,5 @@ class MerchantRepo
   def find_invoices_for_merchant(merchant_id)
     sales_engine.find_invoices_for_merchant(merchant_id)
   end
+
 end
