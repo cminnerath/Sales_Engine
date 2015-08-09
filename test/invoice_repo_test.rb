@@ -77,13 +77,13 @@ class InvoiceRepoTest < Minitest::Test
     # assert_equal "Joey", ir.find_customer_by_id(1).first_name
   end
 
-def test_it_finds_invoices_by_customer_id
- rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
- sales_engine = SalesEngine.new
- sales_engine.start
- ir = InvoiceRepo.new(rows, sales_engine)
- assert_equal "Joey", ir.find_customer_by_id(1).first_name
-end
+  def test_it_finds_invoices_by_customer_id
+    rows = InvoiceLoader.new.load_all('./data/invoices_fixture.csv')
+    sales_engine = SalesEngine.new
+    sales_engine.start
+    ir = InvoiceRepo.new(rows, sales_engine)
+    assert_equal "Joey", ir.find_customer_by_id(1).first_name
+  end
 
 
 

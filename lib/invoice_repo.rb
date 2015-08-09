@@ -44,8 +44,14 @@ class InvoiceRepo
     matches.map {|key, value| value}
   end
 
+  # def find_all_by_merchant_id(merchant_id)
+  #   matches = invoice.select {|key, value| value.merchant_id. == merchant_id }
+  #   matches.map {|key, value| value}
+  # end
   def find_all_by_merchant_id(merchant_id)
-    matches = invoice.select {|key, value| value.merchant_id. == merchant_id }
+    matches = invoice.select do |key, value|
+      value.merchant_id == merchant_id
+    end
     matches.map {|key, value| value}
   end
 

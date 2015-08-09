@@ -44,6 +44,10 @@ class SalesEngine
   def find_items_for_merchant(merchant_id)
     item_repo.find_all_by_merchant_id(merchant_id)
   end
+
+  def find_invoices_for_merchant(merchant_id)
+    invoice_repo.find_all_by_merchant_id(merchant_id)
+  end
 end
 
 if __FILE__ == $0

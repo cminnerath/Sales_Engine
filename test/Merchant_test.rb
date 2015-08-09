@@ -41,28 +41,16 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_returns_a_collection_of_items_for_a_given_merchant
-    #Create a new sales engine instance
-    #Call start on sales engine instance
-    #Call method "find_customer" fom the invoice class
-    #The "find customer" method should call up the stack back down custeromer_repo stack
-      #"find customer" method = (instance of ir).(instance of sales engine).(customer repo).find_by_all_customers
-    #Return should be a collection of customers
-    #Call method "find_item" fom merchant class
-
     merchant = repo.find_by_id(1)
     items = merchant.items
-
     item_ids = items.map { |item| item.id}
     assert_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], item_ids[0..9]
-    # result = engine.merchant_repo.merchant["1"].name("Schroeder-Jerde")
   end
 
-  def test_if_returns_a_collection_of_invoices_for_a_given_merchant
-    merchant = repo.find_by_id(1)
-
+  def test_it_returns_a_collection_of_invoices_for_a_given_merchant
+    merchant = repo.find_by_id(8)
     invoices = merchant.invoices
-    
-    assert_equal ["cda", "cdsss"], invoices.map {|invoice| invoice.id}
+    assert_equal [12], invoices.map {|invoice| invoice.id}
   end
 
 end
