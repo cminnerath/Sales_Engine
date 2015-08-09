@@ -4,33 +4,65 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
 require "./lib/merchant"
-
+require "./lib/sales_engine"
 class MerchantTest < Minitest::Test
 
+  attr_reader :engine, :repo
+
   def setup
-    file = "./data/merchants_fixture.csv"
-    merchant_csv = CSV.open(file, headers: true, header_converters: :symbol)
-    merchant_collection = merchant_csv.map { |row| Merchant.new(row) }
+    @engine = SalesEngine.new("./test/fixtures")
+    engine.start
+    @repo = engine.merchant_repo
   end
 
   def test_it_can_access_id
-    id = setup[0].id
-    assert_equal 1, id
+    merchant = repo.find_by_id(1)
+    assert_equal 1, merchant.id
   end
 
   def test_it_can_access_name
-    name = setup[1].name.to_s
-    assert_equal "Klein, Rempel and Jones",name
+    merchant = repo.find_by_name("Klein, Rempel and Jones")
+    assert_equal 2, merchant.id
   end
 
   def test_it_can_access_created_at
-    created_at = setup[0].created_at
-    assert_equal "2012-03-27 14:53:59 UTC", created_at
+    merchant = repo.find_by_creation_date("2012-03-27 14:53:59 UTC")
+    assert_equal 1, merchant.id
   end
 
   def test_it_can_access_updated_date
-    updated_at = setup[3].updated_at
-    assert_equal "2012-03-27 14:53:59 UTC", updated_at
+    merchant = repo.find_by_updated_date("2012-03-27 14:53:59 UTC")
+    assert_equal 1, merchant.id
+  end
+
+  def test_it_can_access_updated_date
+    merchant = repo.find_by_updated_date("2012-03-27 14:53:59 UTC")
+    assert_equal 1, merchant.id
+  end
+
+  def test_it_returns_a_collection_of_items_for_a_given_merchant
+    #Create a new sales engine instance
+    #Call start on sales engine instance
+    #Call method "find_customer" fom the invoice class
+    #The "find customer" method should call up the stack back down custeromer_repo stack
+      #"find customer" method = (instance of ir).(instance of sales engine).(customer repo).find_by_all_customers
+    #Return should be a collection of customers
+    #Call method "find_item" fom merchant class
+
+    merchant = repo.find_by_id(1)
+    items = merchant.items
+
+    item_ids = items.map { |item| item.id}
+    assert_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], item_ids[0..9]
+    # result = engine.merchant_repo.merchant["1"].name("Schroeder-Jerde")
+  end
+
+  def test_if_returns_a_collection_of_invoices_for_a_given_merchant
+    merchant = repo.find_by_id(1)
+
+    invoices = merchant.invoices
+    
+    assert_equal ["cda", "cdsss"], invoices.map {|invoice| invoice.id}
   end
 
 end

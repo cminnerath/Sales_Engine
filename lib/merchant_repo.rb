@@ -3,16 +3,19 @@ require_relative './merchant_loader'
 
 class MerchantRepo
 
-  attr_reader :merchants
+  attr_accessor :merchants, :sales_engine
+
   def initialize(rows, sales_engine)
     @merchants ||= load_merchants(rows)
     @sales_engine = sales_engine
   end
 
   def load_merchants(rows)
-    @merchants = Hash.new(rows)
-    rows.map {|row| @merchants[row[:id]] = Merchant.new(row) }
-    @merchants
+    merchants_hash = Hash.new
+    before = rows.map do |row|
+      merchants_hash[row[:id]] = Merchant.new(row, self)
+    end
+    merchants_hash
   end
 
   def find_all
@@ -54,4 +57,11 @@ class MerchantRepo
     matches.map {|key, value| value}
   end
 
+  def find_items_for_merchant(merchant_id)
+    sales_engine.find_items_for_merchant(merchant_id)
+  end
+
+  def find_invoices_for_merchant(id)
+    
+  end
 end
