@@ -13,7 +13,7 @@ class Item
       @name         = parameters[:name]
       @description  = parameters[:description]
       @unit_price   = parameters[:unit_price]
-      @merchant_id   = parameters[:merchant_id]
+      @merchant_id   = parameters[:merchant_id].to_i
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
       @repo = repo

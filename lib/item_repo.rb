@@ -41,6 +41,10 @@ class ItemRepo
       items.detect { |key, value| value.unit_price  == unit_price.to_s }.last
     end
 
+    def find_by_merchant_id(merchant_id)
+      items.detect { |key, value| value.merchant_id == merchant_id }.last
+    end
+
     def find_by_creation_date(date)
       items.detect { |key, value| value.created_at == date }.last
     end
