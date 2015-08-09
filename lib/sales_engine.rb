@@ -38,7 +38,7 @@ class SalesEngine
   end
 
   def find_customer_by_id(id)
-     @customer_repo.find_by_id(id)
+    customer_repo.find_by_id(id)
   end
 
   def find_items_for_merchant(merchant_id)

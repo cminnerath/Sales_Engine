@@ -31,7 +31,6 @@ class MerchantRepo
   end
 
   def find_by_merchant_id(merchant_id)
-    require "pry";binding.pry
     merchants.detect { |key, value| value.merchant_id == merchant_id }.last
   end
 

@@ -43,7 +43,7 @@ class MerchantTest < Minitest::Test
   def test_it_returns_a_collection_of_items_for_a_given_merchant
     merchant = repo.find_by_id(1)
     items = merchant.items
-    item_ids = items.map { |item| item.id}
+    item_ids = items.map {|item| item.id}
     assert_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], item_ids[0..9]
   end
 
