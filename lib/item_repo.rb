@@ -12,7 +12,8 @@ class ItemRepo
 
     def load_items(rows)
       @items = Hash.new(0)
-      rows.map { |row| @items[row[:id]] = Item.new(row, self) }
+      rows.map { |row|
+         @items[row[:id]] = Item.new(row, self) }
       @items
     end
 
@@ -64,7 +65,9 @@ class ItemRepo
     end
 
     def find_all_by_merchant_id(merchant_id)
-      matches = items.select {|key, value| value.merchant_id == value.merchant_id.to_s}
+      matches = items.select do |key, value|
+        value.merchant_id == merchant_id.to_s
+      end
       matches.map {|key, value| value}
     end
 

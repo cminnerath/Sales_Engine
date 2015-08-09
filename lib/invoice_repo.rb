@@ -28,11 +28,11 @@ class InvoiceRepo
   end
 
   def find_by_customer_id(customer_id)
-    invoice.detect { |key, value| value.customer_id. == customer_id }.last
+    invoice.detect { |key, value| value.customer_id == customer_id }.last
   end
 
   def find_by_merchant_id(merchant_id)
-    invoice.detect{ |key, value| value.merchant_id. == merchant_id }.last
+    invoice.detect{ |key, value| value.merchant_id == merchant_id }.last
   end
 
   def find_by_creation_date(created_at)
@@ -49,7 +49,9 @@ class InvoiceRepo
   end
 
   def find_all_by_merchant_id(merchant_id)
-    matches = invoice.select {|key, value| value.merchant_id. == merchant_id }
+    matches = invoice.select do |key, value|
+      value.merchant_id == merchant_id
+    end
     matches.map {|key, value| value}
   end
 
@@ -67,4 +69,12 @@ class InvoiceRepo
     @sales_engine.find_customer_by_id(id)
   end
 
+  def find_transactions_for_invoice(invoice_id)
+    @sales_engine.find_transactions_for_invoice(invoice_id)
+  end
+
+  def find_merchant_for_invoice(merchant_id)
+    @sales_engine.find_merchant_for_invoice(merchant_id)
+  end
+  
 end
