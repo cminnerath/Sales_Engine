@@ -3,7 +3,7 @@ require_relative 'customer_loader'
 
 class CustomerRepo
 
-  attr_reader :customers
+  attr_reader :customers, :sales_engine
 
   def initialize(rows, sales_engine)
     @customers ||= load_customers(rows)
@@ -62,6 +62,10 @@ class CustomerRepo
   def find_all_by_updated_date(updated_at)
     matches = customers.select {|key, value| value.updated_at == updated_at }.to_a
     matches.map {|key, value| value}
+  end
+
+  def find_invoices_by_customer(id)
+    sales_engine.find_invoices_by_customer(id)
   end
 
 end

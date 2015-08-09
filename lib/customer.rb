@@ -16,4 +16,8 @@ class Customer
       @repo         = repo
     end
 
+    def invoices
+      repo.find_invoices_by_customer(id)
+    end
+
 end

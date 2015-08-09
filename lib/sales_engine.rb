@@ -65,6 +65,10 @@ class SalesEngine
     invoice_repo.find_by_id(invoice_id)
   end
 
+  def find_invoices_by_customer(id)
+    invoice_repo.find_all_by_customer_id(id)
+  end
+
 end
 
 if __FILE__ == $0

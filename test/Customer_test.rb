@@ -4,49 +4,47 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
 require "./lib/customer"
+require "./lib/sales_engine"
 
 class CustomerTest < Minitest::Test
 
+  attr_reader :engine, :repo
+
+  def setup
+    @engine = SalesEngine.new("./test/fixtures")
+    engine.start
+    @repo = engine.customer_repo
+  end
+
   def test_it_can_access_customer_id
-		file = "./data/customers_fixture.csv"
-		customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-		customer_collection = customer_csv.map { |row| Customer.new(row) }
-		id = customer_collection[0].id
-    assert_equal 1 , id
+    customer = repo.find_by_id(1)
+    assert_equal 1 , customer.id
   end
 
   def test_it_can_access_customers_first_name
-		file = "./data/customers_fixture.csv"
-		customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-		customer_collection = customer_csv.map { |row| Customer.new(row) }
-		first_name = customer_collection[0].first_name
-    assert_equal "Joey" , first_name
+    customer = repo.find_by_first_name("joey")
+    assert_equal 1, customer.id
   end
 
   def test_it_can_access_customers_last_name
-		file = "./data/customers_fixture.csv"
-		customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-		customer_collection = customer_csv.map { |row| Customer.new(row) }
-		last_name = customer_collection[0].last_name
-    assert_equal "Ondricka" , last_name
+    customer = repo.find_by_last_name("Ondricka")
+    assert_equal 1, customer.id
   end
 
-#find how to store time in Ruby class
-
   def test_it_can_access_customers_creation_date
-  	file = "./data/customers_fixture.csv"
-  	customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-  	customer_collection = customer_csv.map { |row| Customer.new(row) }
-  	created_at = customer_collection[0].created_at
-    assert_equal "2012-03-27 14:54:09 UTC" , created_at
+    customer = repo.find_by_creation_date("2012-03-27 14:54:09 UTC")
+    assert_equal 1, customer.id
   end
 
   def test_it_can_access_customers_updated_date
-  	file = "./data/customers_fixture.csv"
-  	customer_csv = CSV.open(file, headers: true, header_converters: :symbol)
-  	customer_collection = customer_csv.map { |row| Customer.new(row) }
-  	updated_at = customer_collection[0].updated_at
-    assert_equal "2012-03-27 14:54:09 UTC" , updated_at
+    customer = repo.find_by_updated_date("2012-03-27 14:54:09 UTC")
+    assert_equal 1, customer.id
+  end
+
+  def test_it_returns_a_collection_of_invoices_for_a_given_customer
+    customer = repo.find_by_id(1)
+    invoices = customer.invoices
+    assert_equal [26, 75, 78, 33, 41, 76, 44, 38], invoices.map {|invoices| invoices.merchant_id}
   end
 
 end
