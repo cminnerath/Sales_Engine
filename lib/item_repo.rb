@@ -74,7 +74,7 @@ class ItemRepo
       end
       matches.map {|key, value| value}
     end
-
+    
     def find_all_by_creation_date(created_at)
       matches = items.select {|key, value| value.created_at == created_at }.to_a
       matches.map {|key, value| value}

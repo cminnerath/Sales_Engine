@@ -61,8 +61,6 @@ class InvoiceItemTest < Minitest::Test
     invoice_item = repo.find_by_item_id(4)
     item = invoice_item.item
     assert_equal "Item Nemo Facere", item.name
-
   end
-
-
+  
 end

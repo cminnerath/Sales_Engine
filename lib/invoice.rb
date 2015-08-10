@@ -18,11 +18,20 @@ class Invoice
   end
 
   def transactions
-    repo.find_transactions_for_invoice(invoice_id)
+    repo.find_transactions_for_invoice(id)
   end
 
   def merchant
     repo.find_merchant_for_invoice(merchant_id)
+  end
+
+  def invoice_items
+    repo.find_invoice_item_by_invoice_id(id)
+  end
+
+  def items
+    item_id = invoice_items
+    repo.find_item_by_invoice_item_id(item_id)
   end
 
 end

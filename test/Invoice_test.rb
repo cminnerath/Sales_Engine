@@ -31,39 +31,32 @@ class InvoiceTest < Minitest::Test
     assert_equal 38, invoice.merchant_id
   end
 
-  # def test_it_can_access_status
-  #   skip
-  #   #fail
-  #   invoice = repo
-  #   assert_equal "shipped", invoice.status
-  # end
-  #
-  # def test_it_can_access_created_at
-  #   created_at = setup[0].created_at
-  #   assert_equal "2012-03-25 09:54:09 UTC", created_at
-  # end
-  #
-  # def test_it_can_access_updated_date
-  #   skip
-  #   updated_at = setup[0].updated_at
-  #   assert_equal "2012-03-25 09:54:09 UTC", updated_at
-  # end
-
   def test_it_finds_invoices_by_customer_id
     assert_equal "Joey", repo.find_customer_by_id(1).first_name
   end
 
   def test_it_returns_a_collection_of_associated_transaction_instances
-    invoice = repo.find_by_id(8)
+    invoice = repo.find_by_id(12)
     transactions = invoice.transactions
-    require "pry"; binding.pry
-    assert_equal [7], transactions.map {|invoice| invoice.id}
+    assert_equal [11, 12], transactions.map {|invoice| invoice.id}
   end
 
   def test_it_returns_a_merchant_associated_with_an_invoice_id
     invoice = repo.find_by_id(21)
-    # invoice.merchant_id
     merchant = invoice.merchant
     assert_equal "Pollich and Sons", merchant.name
   end
+
+  def test_it_can_return_a_collection_of_associated_invoiceitems
+    invoice = repo.find_by_id(1)
+    invoice_item = invoice.invoice_items
+    assert_equal 8, invoice.invoice_items.count
+  end
+
+  def test_it_can_return_a_collection_of_associated_items_by_way_of_invoice_items
+    invoice = repo.find_by_id(4)
+    invoice_item = invoice.items
+    assert_equal "Item Nemo Facere", invoice_item.name
+  end
+
 end

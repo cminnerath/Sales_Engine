@@ -65,7 +65,7 @@ class TransactionRepo
 
   def find_all_by_invoice_id(invoice_id)
     matches = transactions.select do|key,value|
-      value.invoice_id  == invoice_id.to_s
+      value.invoice_id  == invoice_id
     end.to_a
     matches.map {|key, value| value}
   end

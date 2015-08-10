@@ -51,8 +51,8 @@ class SalesEngine
     invoice_repo.find_all_by_merchant_id(merchant_id)
   end
 
-  def find_transactions_for_invoice(invoice_id)
-    transaction_repo.find_all_by_invoice_id(invoice_id)
+  def find_transactions_for_invoice(id)
+    transaction_repo.find_all_by_invoice_id(id)
   end
 
   def find_merchant_for_invoice(merchant_id)
@@ -76,6 +76,15 @@ class SalesEngine
   end
 
   def find_item_by_invoice(item_id)
+    item_repo.find_by_id(item_id)
+  end
+
+  def find_invoice_item_by_invoice_id(id)
+    invoice_item_repo.find_all_by_invoice_id(id)
+  end
+
+  def find_item_by_invoice_item_id(item_id)
+    item_id = item_id[0].invoice_id
     item_repo.find_by_id(item_id)
   end
 
