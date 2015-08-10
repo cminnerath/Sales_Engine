@@ -2,7 +2,7 @@ require_relative 'invoice_item'
 require_relative './invoice_item_loader'
 
 class InvoiceItemRepo
-  attr_reader :invoice_items
+  attr_reader :invoice_items, :sales_engine
 
   def initialize(rows, sales_engine)
     @invoice_items ||= load_invoice_items(rows)
@@ -79,6 +79,14 @@ class InvoiceItemRepo
   def find_all_by_updated_date(updated_at)
     matches = invoice_items.select {|key, value| value.updated_at == updated_at }.to_a
     matches.map {|key, value| value}
+  end
+
+  def find_invoices_by_id(invoice_id)
+    sales_engine.find_invoices_by_id(invoice_id)
+  end
+
+  def find_item_by_invoice(item_id)
+    sales_engine.find_item_by_invoice(item_id)
   end
 
 end

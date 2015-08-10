@@ -18,4 +18,12 @@ class InvoiceItem
     @updated_at     = parameters[:updated_at]
     @repo           = repo
   end
+
+  def invoice
+    repo.find_invoices_by_id(invoice_id)
+  end
+
+  def item
+    repo.find_item_by_invoice(item_id)
+  end
 end

@@ -51,5 +51,18 @@ class InvoiceItemTest < Minitest::Test
     assert_equal "2012-03-27 14:54:10 UTC", invoice_item.updated_at
   end
 
+  def test_it_can_return_an_instance_of_invoice
+    invoice_item = repo.find_by_invoice_id(1)
+    invoices = invoice_item.invoice
+    assert_equal 1, invoice_item.id
+  end
+
+  def test_it_can_return_an_instance_of_item
+    invoice_item = repo.find_by_item_id(4)
+    item = invoice_item.item
+    assert_equal "Item Nemo Facere", item.name
+
+  end
+
 
 end

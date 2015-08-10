@@ -78,4 +78,8 @@ class InvoiceItemRepoTest < Minitest::Test
     assert_equal 15, repo.find_all_by_updated_date("2012-03-27 14:54:09 UTC")[0..19].count
   end
 
+  def test_it_can_return_a_collection_of_invoices
+
+  end
+
 end
