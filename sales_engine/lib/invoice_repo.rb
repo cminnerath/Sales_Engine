@@ -76,5 +76,8 @@ class InvoiceRepo
   def find_merchant_for_invoice(merchant_id)
     @sales_engine.find_merchant_for_invoice(merchant_id)
   end
-
+  
+  def inspect
+    "#<#{self.class} #{@all.size} rows>"
+  end
 end

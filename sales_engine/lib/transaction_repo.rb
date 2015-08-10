@@ -99,5 +99,8 @@ class TransactionRepo
     sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
+  def inspect
+    "#<#{self.class} #{@all.size} rows>"
+  end
 
 end
