@@ -51,4 +51,5 @@ class InvoiceItemTest < Minitest::Test
     assert_equal "2012-03-27 14:54:10 UTC", invoice_item.updated_at
   end
 
+
 end

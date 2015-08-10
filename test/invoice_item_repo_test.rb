@@ -9,8 +9,6 @@ require "./lib/sales_engine"
 
 class InvoiceItemRepoTest < Minitest::Test
 
-  attr_reader :invoice_item  # => nil, nil
-
   attr_reader :engine, :repo
 
   def setup
@@ -26,70 +24,58 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_it_can_find_by_id
-    result = repo.invoice_items["1"]
-    assert_equal result, repo.find_by_id(1)
+    result = repo.invoice_items["2"]
+    assert_equal result, repo.find_by_id(2)
   end
 
   def test_it_can_find_by_item_id
-
     result = repo.invoice_items["1"]
     assert_equal result, repo.find_by_item_id(539)
   end
 
   def test_it_can_find_by_invoice_id
-    skip
-    result = repo.invoice_items["1"]
-    assert_equal result, repo.find_by_invoice_id(5)
+    result = repo.invoice_items["13"]
+    assert_equal result, repo.find_by_invoice_id(3)
   end
-  #
-  # def find_by_customer_id(customer_id)
-  #   invoice.detect { |key, value| value.customer_id == customer_id }.last
-  # end
-  #
-  # def find_by_merchant_id(merchant_id)
-  #   invoice.detect{ |key, value| value.merchant_id == merchant_id }.last
-  # end
-  #
-  # def find_by_creation_date(created_at)
-  #   invoice.detect { |key, value| value.created_at == created_at }.last
-  # end
-  #
-  # def find_by_updated_date(updated_at)
-  #   invoice.detect { |key, value| value.created_at == updated_at }.last
-  # end
-  #
-  # def find_all_by_customer_id(customer_id)
-  #   matches = invoice.select {|key, value| value.customer_id. == customer_id }
-  #   matches.map {|key, value| value}
-  # end
-  #
-  # def find_all_by_merchant_id(merchant_id)
-  #   matches = invoice.select do |key, value|
-  #     value.merchant_id == merchant_id
-  #   end
-  #   matches.map {|key, value| value}
-  # end
-  #
-  # def find_all_by_creation_date(created_at)
-  #   matches = invoice.select {|key, value| value.created_at == created_at }.to_a
-  #   matches.map {|key, value| value}
-  # end
-  #
-  # def find_all_by_updated_date(updated_at)
-  #   matches = invoice.select {|key, value| value.updated_at == updated_at }.to_a
-  #   matches.map {|key, value| value}
-  # end
-  #
-  # def find_customer_by_id(id)
-  #   @sales_engine.find_customer_by_id(id)
-  # end
-  #
-  # def find_transactions_for_invoice(invoice_id)
-  #   @sales_engine.find_transactions_for_invoice(invoice_id)
-  # end
-  #
-  # def find_merchant_for_invoice(merchant_id)
-  #   @sales_engine.find_merchant_for_invoice(merchant_id)
-  # end
+
+  def test_it_can_find_by_quantity
+    result = repo.invoice_items["21"]
+    assert_equal result, repo.find_by_quantity(2)
+  end
+
+  def test_it_can_find_by_unit_price
+    result = repo.invoice_items["21"]
+    assert_equal result, repo.find_by_unit_price("42203")
+  end
+
+  def test_it_can_find_by_updated_date
+    result = repo.invoice_items["1"]
+    assert_equal result, repo.find_by_updated_date("2012-03-27 14:54:09 UTC")
+  end
+
+  def test_it_can_find_by_creation_date
+    result = repo.invoice_items["1"]
+    assert_equal result, repo.find_by_creation_date("2012-03-27 14:54:09 UTC")
+  end
+
+  def test_it_can_find_all_by_invoice_id
+    assert_equal 8, repo.find_all_by_invoice_id(1)[0..19].count
+  end
+
+  def test_it_can_find_all_by_quantity
+    assert_equal 1, repo.find_all_by_quantity(2)[0..19].count
+  end
+
+  def test_it_can_find_all_by_unit_price
+    assert_equal 3, repo.find_all_by_unit_price("72018")[0..19].count
+  end
+
+  def test_it_can_find_all_by_creation_date
+    assert_equal 15, repo.find_all_by_creation_date("2012-03-27 14:54:09 UTC")[0..19].count
+  end
+
+  def test_it_can_find_all_by_updated_date
+    assert_equal 15, repo.find_all_by_updated_date("2012-03-27 14:54:09 UTC")[0..19].count
+  end
 
 end

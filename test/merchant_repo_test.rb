@@ -54,4 +54,5 @@ class MerchantRepoTest < Minitest::Test
   def test_it_finds_all_matches_by_updated_date
     assert_equal 3, repo.find_all_by_updated_date("2012-03-27 14:54:00 UTC").count
   end
+
 end
