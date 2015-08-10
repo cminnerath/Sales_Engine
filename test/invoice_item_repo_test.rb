@@ -1,40 +1,55 @@
-require_relative 'invoice_item'
-require_relative './invoice_item_loader'
+require 'simplecov'
+# SimpleCov.start
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'csv'
+require './lib/invoice_item'
+require './lib/invoice_item_loader'
+require "./lib/sales_engine"
 
-class InvoiceItemRepo
-  attr_reader :invoice_items
+class InvoiceItemRepoTest < Minitest::Test
 
-  def initialize(rows, sales_engine)
-    @invoice_items ||= load_invoice_items(rows)
-    @sales_engine = sales_engine
+  attr_reader :invoice_item  # => nil, nil
+
+  attr_reader :engine, :repo
+
+  def setup
+    @engine = SalesEngine.new("./test/fixtures")
+    engine.start
+    @repo = engine.invoice_item_repo
   end
 
-  def load_invoice_items(rows)
-    @invoice_items = Hash.new(0)
-    rows.map { |row| @invoice_items[row[:id]] = InvoiceItem.new(row, self) }
-    @invoice_items
+  def test_it_finds_all_invoice_items
+    result = repo.invoice_items
+    assert_equal result, repo.find_all
+    assert_equal Hash, result.class
   end
 
-  def find_all
-    @invoice_items
+  def test_it_can_find_by_id
+    result = repo.invoice_items["1"]
+    assert_equal result, repo.find_by_id(1)
+  end
+
+  def test_it_can_find_by_item_id
+
+    result = repo.invoice_items["1"]
+    assert_equal result, repo.find_by_item_id(539)
+  end
+
+  def test_it_can_find_by_invoice_id
+    skip
+    result = repo.invoice_items["1"]
+    assert_equal result, repo.find_by_invoice_id(5)
   end
   #
-  # def find_random
-  #   @invoice.keys.sample
+  # def find_by_customer_id(customer_id)
+  #   invoice.detect { |key, value| value.customer_id == customer_id }.last
   # end
   #
-  def find_by_id(id)
-    invoice_items.detect { |key, value| value.id == id }.last
-  end
-
-  def find_by_item_id(id)
-    invoice_items.detect { |key, value| value.id == id }.last
-  end
-
-  def find_by_invoice_id(id)
-    invoice_items.detect { |key, value| value.id == id }.last
-  end
-
+  # def find_by_merchant_id(merchant_id)
+  #   invoice.detect{ |key, value| value.merchant_id == merchant_id }.last
+  # end
+  #
   # def find_by_creation_date(created_at)
   #   invoice.detect { |key, value| value.created_at == created_at }.last
   # end

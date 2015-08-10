@@ -9,6 +9,8 @@ require_relative 'transaction_repo'
 require_relative "transaction_loader"
 require_relative "invoice_repo"
 require_relative "invoice_loader"
+require_relative "invoice_item_repo"
+require_relative "invoice_item_loader"
 
 class SalesEngine
 
@@ -25,7 +27,7 @@ class SalesEngine
     @invoice_data         = InvoiceLoader.new.load_all("#{directory}/invoices.csv")
     @item_data            = ItemLoader.new.load_all("#{directory}/items.csv")
     @transaction_data     = TransactionLoader.new.load_all("#{directory}/transactions.csv")
-    # @invoice_item_data    = InvoiceItemLoader.new.load_all
+    @invoice_item_data    = InvoiceItemLoader.new.load_all("#{directory}/invoice_items.csv")
   end
 
   def start
@@ -34,7 +36,7 @@ class SalesEngine
     @invoice_repo       ||= InvoiceRepo.new(@invoice_data, self)
     @transaction_repo   ||= TransactionRepo.new(@transaction_data, self)
     @item_repo          ||= ItemRepo.new(@item_data, self)
-    # @invoice_item_repo = InvoiceItemRepo.new(@invoice_item_data, self)
+    @invoice_item_repo  ||= InvoiceItemRepo.new(@invoice_item_data, self)
   end
 
   def find_customer_by_id(id)
