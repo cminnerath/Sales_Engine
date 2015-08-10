@@ -3,8 +3,9 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require "./lib/merchant"
-require "./lib/sales_engine"
+require_relative "../lib/merchant"
+require_relative "../lib/sales_engine"
+
 class MerchantTest < Minitest::Test
 
   attr_reader :engine, :repo

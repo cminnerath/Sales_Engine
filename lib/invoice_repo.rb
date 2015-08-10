@@ -2,7 +2,7 @@ require_relative 'invoice'
 require_relative './invoice_loader'
 
 class InvoiceRepo
-  attr_reader :invoice  # => nil, nil
+  attr_reader :invoice
 
   def initialize(rows, sales_engine)
     @invoice ||= load_invoice(rows)
@@ -76,5 +76,5 @@ class InvoiceRepo
   def find_merchant_for_invoice(merchant_id)
     @sales_engine.find_merchant_for_invoice(merchant_id)
   end
-  
+
 end

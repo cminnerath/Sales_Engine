@@ -1,10 +1,10 @@
+require 'csv'
 require 'simplecov'
 # SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'csv'
-require "./lib/item"
-require "./lib/sales_engine"
+require_relative "../lib/item"
+require_relative "../lib/sales_engine"
 
 class ItemTest < Minitest::Test
 
