@@ -7,9 +7,9 @@ class Transaction
               :result,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
-    def initialize(parameters, repo)
+    def initialize(parameters, repository)
       @id                             = parameters[:id].to_i
       @invoice_id                     = parameters[:invoice_id].to_i
       @credit_card_number             = parameters[:credit_card_number].to_i
@@ -17,10 +17,10 @@ class Transaction
       @result                         = parameters[:result]
       @created_at                     = parameters[:created_at]
       @updated_at                     = parameters[:updated_at]
-      @repo                           = repo
+      @repository                           = repository
     end
 
     def invoice
-      repo.find_invoice_by_transaction(invoice_id)
+      repository.find_invoice_by_transaction(invoice_id)
     end
 end

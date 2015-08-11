@@ -6,9 +6,9 @@ class InvoiceItem
               :unit_price,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
-  def initialize(parameters, repo)
+  def initialize(parameters, repository)
     @id             = parameters[:id].to_i
     @item_id        = parameters[:item_id].to_i
     @invoice_id     = parameters[:invoice_id].to_i
@@ -16,14 +16,14 @@ class InvoiceItem
     @unit_price     = parameters[:unit_price]
     @created_at     = parameters[:created_at]
     @updated_at     = parameters[:updated_at]
-    @repo           = repo
+    @repository           = repository
   end
 
   def invoice
-    repo.find_invoices_by_id(invoice_id)
+    repository.find_invoices_by_id(invoice_id)
   end
 
   def item
-    repo.find_item_by_invoice(item_id)
+    repository.find_item_by_invoice(item_id)
   end
 end

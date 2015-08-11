@@ -4,47 +4,47 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
 require_relative "../lib/invoice"
-require_relative "../lib/invoice_repo"
+require_relative "../lib/invoice_repository"
 require_relative "../lib/sales_engine"
 
-class InvoiceRepoTest < Minitest::Test
+class InvoiceRepositoryTest < Minitest::Test
 
-  attr_reader :engine, :repo
+  attr_reader :engine, :repository
 
   def setup
     @engine = SalesEngine.new("./test/fixtures")
     engine.start
-    @repo = engine.invoice_repo
+    @repository = engine.invoice_repository
   end
 
   def test_it_finds_all_customers
-    result = repo.invoice
-    assert_equal result, repo.find_all
+    result = repository.invoice
+    assert_equal result, repository.find_all
     assert_equal Hash, result.class
   end
 
   def test_it_can_find_by_id
-    result = repo.invoice["1"]
-    assert_equal result, repo.find_by_id(1)
+    result = repository.invoice["1"]
+    assert_equal result, repository.find_by_id(1)
   end
 
   def test_it_can_find_by_customer_id
-    result = repo.invoice["1"]
-    assert_equal result, repo.find_by_customer_id(1)
+    result = repository.invoice["1"]
+    assert_equal result, repository.find_by_customer_id(1)
   end
 
   def test_it_can_find_by_merchant_id
-    result = repo.invoice["1"]
-    assert_equal result, repo.find_by_merchant_id(26)
+    result = repository.invoice["1"]
+    assert_equal result, repository.find_by_merchant_id(26)
   end
 
   def test_it_can_find_by_creation_date
-    result = repo.invoice["1"]
-    assert_equal result, repo.find_by_creation_date("2012-03-25 09:54:09 UTC")
+    result = repository.invoice["1"]
+    assert_equal result, repository.find_by_creation_date("2012-03-25 09:54:09 UTC")
   end
 
   def test_it_can_find_by_updated_date
-    result = repo.invoice["1"]
-    assert_equal result, repo.find_by_updated_date("2012-03-25 09:54:09 UTC")
+    result = repository.invoice["1"]
+    assert_equal result, repository.find_by_updated_date("2012-03-25 09:54:09 UTC")
   end
 end

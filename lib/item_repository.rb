@@ -1,7 +1,7 @@
 require_relative 'item'
 require_relative './item_loader'
 
-class ItemRepository
+class Itemrepository
 
     attr_reader :items, :sales_engine
 

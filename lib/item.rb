@@ -7,9 +7,9 @@ class Item
               :merchant_id,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
-    def initialize(parameters, repo)
+    def initialize(parameters, repository)
       @id           = parameters[:id].to_i
       @name         = parameters[:name]
       @description  = parameters[:description]
@@ -17,10 +17,10 @@ class Item
       @merchant_id   = parameters[:merchant_id].to_i
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
-      @repo         = repo
+      @repository         = repository
     end
 
     def merchant
-      repo.find_merchant_by_item(merchant_id)
+      repository.find_merchant_by_item(merchant_id)
     end
 end
