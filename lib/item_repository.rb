@@ -26,7 +26,6 @@ class ItemRepository
     end
 
     def find_by_id(id)
-      # items.detect { |key, value| value.id == id }.last
       matches = items.select {|key, value| value.id == id }.to_a
       matches.map {|key, value| value}
     end
@@ -41,7 +40,7 @@ class ItemRepository
 
     def find_by_unit_price(unit_price)
       items.detect do |key, value|
-        value.unit_price == unit_price.to_s
+        value.unit_price == unit_price
       end.last
     end
 
