@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Item
 
   attr_reader :id,
@@ -13,7 +15,7 @@ class Item
       @id           = parameters[:id].to_i
       @name         = parameters[:name]
       @description  = parameters[:description]
-      @unit_price   = parameters[:unit_price]
+      @unit_price   = BigDecimal.new(parameters[:unit_price])/100
       @merchant_id   = parameters[:merchant_id].to_i
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
