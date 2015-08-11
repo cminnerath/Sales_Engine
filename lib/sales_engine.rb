@@ -93,6 +93,10 @@ class SalesEngine
     customer_repository.find_by_id(customer_id)
   end
 
+  def find_invoice_items_by_item(id)
+    invoice_item_repository.find_all_by_item_id(id)
+  end
+
 end
 
 if __FILE__ == $0

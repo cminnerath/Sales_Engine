@@ -92,6 +92,10 @@ class ItemRepository
       sales_engine.find_merchant_by_item(merchant_id)
     end
 
+    def find_invoice_items_by_item(id)
+      sales_engine.find_invoice_items_by_item(id)
+    end
+
     def inspect
       "#<#{self.class} #{@items.size} rows>"
     end

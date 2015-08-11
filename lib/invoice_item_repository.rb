@@ -51,6 +51,11 @@ class InvoiceItemRepository
     invoice_items.detect { |key, value| value.updated_at == updated_at }.last
   end
 
+  def find_all_by_item_id(item_id)
+    matches = invoice_items.select {|key, value| value.item_id == item_id }
+    matches.map {|key, value| value}
+  end
+
   def find_all_by_invoice_id(invoice_id)
     matches = invoice_items.select {|key, value| value.invoice_id == invoice_id }
     matches.map {|key, value| value}

@@ -27,6 +27,10 @@ class Item
       repository.find_merchant_by_item(merchant_id)
     end
 
+    def invoice_items
+      repository.find_invoice_items_by_item(id)
+    end
+
 
     def size
     end
