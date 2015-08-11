@@ -21,7 +21,7 @@ class Customer
     end
 
     def transactions
-      invoices.flat_map do |invoice|
+      invoices do |invoice|
         invoice.transactions
       end
     end

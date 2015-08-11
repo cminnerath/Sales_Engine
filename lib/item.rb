@@ -18,9 +18,14 @@ class Item
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
       @repository         = repository
+
     end
 
     def merchant
       repository.find_merchant_by_item(merchant_id)
+    end
+
+
+    def size
     end
 end
