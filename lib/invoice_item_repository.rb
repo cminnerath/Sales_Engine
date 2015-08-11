@@ -1,7 +1,7 @@
 require_relative 'invoice_item'
 require_relative './invoice_item_loader'
 
-class InvoiceItemRepo
+class InvoiceItemRepository
   attr_reader :invoice_items, :sales_engine
 
   def initialize(rows, sales_engine)

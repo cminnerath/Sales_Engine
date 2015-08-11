@@ -5,19 +5,25 @@ class Customer
               :last_name,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
-    def initialize(parameters, repo)
+    def initialize(parameters, repository)
       @id           = parameters[:id].to_i
       @first_name   = parameters[:first_name]
       @last_name    = parameters[:last_name]
       @created_at   = parameters[:created_at]
       @updated_at   = parameters[:updated_at]
-      @repo         = repo
+      @repository         = repository
     end
 
     def invoices
-      repo.find_invoices_by_customer(id)
+      repository.find_invoices_by_customer(id)
+    end
+
+    def transactions
+      invoices.flat_map do |invoice|
+        invoice.transactions
+      end
     end
 
 end

@@ -1,7 +1,7 @@
 require_relative 'invoice'
 require_relative './invoice_loader'
 
-class InvoiceRepo
+class InvoiceRepository
   attr_reader :invoice, :sales_engine
 
   def initialize(rows, sales_engine)

@@ -1,25 +1,25 @@
 require 'csv'
-require_relative 'customer_repo'
+require_relative 'customer_repository'
 require_relative 'customer_loader'
-require_relative 'merchant_repo'
+require_relative 'merchant_repository'
 require_relative 'merchant_loader'
-require_relative 'item_repo'
+require_relative 'item_repository'
 require_relative "item_loader"
-require_relative 'transaction_repo'
+require_relative 'transaction_repository'
 require_relative "transaction_loader"
-require_relative "invoice_repo"
+require_relative "invoice_repository"
 require_relative "invoice_loader"
-require_relative "invoice_item_repo"
+require_relative "invoice_item_repository"
 require_relative "invoice_item_loader"
 
 class SalesEngine
 
-  attr_reader   :customer_data,    :customer_repo,
-                :merchant_data,    :merchant_repo,
-                :invoice_data,     :invoice_repo,
-                :item_data,        :item_repo,
-                :invoice_item_data,:invoice_item_repo,
-                :transaction_data, :transaction_repo
+  attr_reader   :customer_data,    :customer_repository,
+                :merchant_data,    :merchant_repository,
+                :invoice_data,     :invoice_repository,
+                :item_data,        :item_repository,
+                :invoice_item_data,:invoice_item_repository,
+                :transaction_data, :transaction_repository
 
   def initialize(directory = "./data")
     @customer_data        = CustomerLoader.new.load_all("#{directory}/customers.csv")
@@ -31,61 +31,61 @@ class SalesEngine
   end
 
   def startup
-    @customer_repo      ||= CustomerRepo.new(@customer_data, self)
-    @merchant_repo      ||= MerchantRepo.new(@merchant_data, self)
-    @invoice_repo       ||= InvoiceRepo.new(@invoice_data, self)
-    @transaction_repo   ||= TransactionRepo.new(@transaction_data, self)
-    @item_repo          ||= ItemRepo.new(@item_data, self)
-    @invoice_item_repo  ||= InvoiceItemRepo.new(@invoice_item_data, self)
+    @customer_repository      ||= CustomerRepository.new(@customer_data, self)
+    @merchant_repository      ||= MerchantRepository.new(@merchant_data, self)
+    @invoice_repository       ||= InvoiceRepository.new(@invoice_data, self)
+    @transaction_repository   ||= TransactionRepository.new(@transaction_data, self)
+    @item_repository          ||= Itemrepository.new(@item_data, self)
+    @invoice_item_repository  ||= InvoiceItemRepository.new(@invoice_item_data, self)
   end
 
   def find_customer_by_id(id)
-    customer_repo.find_by_id(id)
+    customer_repository.find_by_id(id)
   end
 
   def find_items_for_merchant(merchant_id)
-    item_repo.find_all_by_merchant_id(merchant_id)
+    item_repository.find_all_by_merchant_id(merchant_id)
   end
 
   def find_invoices_for_merchant(merchant_id)
-    invoice_repo.find_all_by_merchant_id(merchant_id)
+    invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
   def find_transactions_for_invoice(id)
-    transaction_repo.find_all_by_invoice_id(id)
+    transaction_repository.find_all_by_invoice_id(id)
   end
 
   def find_merchant_for_invoice(merchant_id)
-    merchant_repo.find_by_id(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
   end
 
   def find_merchant_by_item(merchant_id)
-    merchant_repo.find_by_id(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
   end
 
   def find_invoice_by_transaction(invoice_id)
-    invoice_repo.find_by_id(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
   end
 
   def find_invoices_by_customer(id)
-    invoice_repo.find_all_by_customer_id(id)
+    invoice_repository.find_all_by_customer_id(id)
   end
 
   def find_invoices_by_id(invoice_id)
-    invoice_repo.find_by_id(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
   end
 
   def find_item_by_invoice(item_id)
-    item_repo.find_by_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
   def find_invoice_item_by_invoice_id(id)
-    invoice_item_repo.find_all_by_invoice_id(id)
+    invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def find_item_by_invoice_item_id(item_id)
     item_id = item_id[0].invoice_id
-    item_repo.find_by_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
 end

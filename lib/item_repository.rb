@@ -1,7 +1,7 @@
 require_relative 'item'
 require_relative './item_loader'
 
-class ItemRepo
+class Itemrepository
 
     attr_reader :items, :sales_engine
 
@@ -89,7 +89,7 @@ class ItemRepo
       sales_engine.find_merchant_by_item(merchant_id)
     end
 
-    def inspect 
+    def inspect
       "#<#{self.class} #{@all.size} rows>"
     end
 

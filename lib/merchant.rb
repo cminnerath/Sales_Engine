@@ -4,22 +4,22 @@ class Merchant
               :name,
               :created_at,
               :updated_at,
-              :repo
+              :repository
 
 
-  def initialize(parameters, repo)
+  def initialize(parameters, repository)
     @id                             = parameters[:id].to_i
     @name                           = parameters[:name]
     @created_at                     = parameters[:created_at]
     @updated_at                     = parameters[:updated_at]
-    @repo                           = repo
+    @repository                           = repository
   end
 
   def items
-    repo.find_items_for_merchant(id)
+    repository.find_items_for_merchant(id)
   end
 
   def invoices
-    repo.find_invoices_for_merchant(id)
+    repository.find_invoices_for_merchant(id)
   end
 end
