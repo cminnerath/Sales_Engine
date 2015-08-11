@@ -35,7 +35,7 @@ class SalesEngine
     @merchant_repository      ||= MerchantRepository.new(@merchant_data, self)
     @invoice_repository       ||= InvoiceRepository.new(@invoice_data, self)
     @transaction_repository   ||= TransactionRepository.new(@transaction_data, self)
-    @item_repository          ||= Itemrepository.new(@item_data, self)
+    @item_repository          ||= ItemRepository.new(@item_data, self)
     @invoice_item_repository  ||= InvoiceItemRepository.new(@invoice_item_data, self)
   end
 

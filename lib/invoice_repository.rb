@@ -16,11 +16,11 @@ class InvoiceRepository
   end
 
   def find_all
-    @invoice
+    invoice
   end
 
-  def find_random
-    @invoice.keys.sample
+  def random
+    invoice.values.sample
   end
 
   def find_by_id(id)
@@ -33,6 +33,10 @@ class InvoiceRepository
 
   def find_by_merchant_id(merchant_id)
     invoice.detect{ |key, value| value.merchant_id == merchant_id }.last
+  end
+
+  def find_by_status(status)
+    invoice.detect { |key, value| value.status == status }
   end
 
   def find_by_creation_date(created_at)
@@ -52,6 +56,11 @@ class InvoiceRepository
     matches = invoice.select do |key, value|
       value.merchant_id == merchant_id
     end
+    matches.map {|key, value| value}
+  end
+
+  def find_all_by_status(status)
+    matches = invoice.select {|key, value| value.status == status }
     matches.map {|key, value| value}
   end
 

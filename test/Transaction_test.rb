@@ -12,7 +12,7 @@ class TransactionTest < Minitest::Test
 
   def setup
     @engine = SalesEngine.new("./test/fixtures")
-    engine.start
+    engine.startup
     @repository = engine.transaction_repository
   end
 
@@ -27,8 +27,8 @@ class TransactionTest < Minitest::Test
   end
 
   def test_it_can_access_by_cc_number
-    tran = repository.find_by_credit_card_number(4654405418249632)
-    assert_equal 1, tran.id
+    tran = repository.find_by_credit_card_number(4580251236515201)
+    assert_equal 2, tran.size
   end
 
   def test_it_can_access_by_result

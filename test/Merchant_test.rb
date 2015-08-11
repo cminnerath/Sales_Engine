@@ -11,7 +11,7 @@ class MerchantTest < Minitest::Test
 
   def setup
     @engine = SalesEngine.new("./test/fixtures")
-    engine.start
+    engine.startup
     @repository = engine.merchant_repository
   end
 

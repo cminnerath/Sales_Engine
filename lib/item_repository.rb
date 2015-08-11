@@ -1,7 +1,7 @@
 require_relative 'item'
 require_relative './item_loader'
 
-class Itemrepository
+class ItemRepository
 
     attr_reader :items, :sales_engine
 
@@ -21,8 +21,8 @@ class Itemrepository
       items
     end
 
-    def find_random
-      items.keys.sample
+    def random
+      items.values.sample
     end
 
     def find_by_id(id)
@@ -37,8 +37,10 @@ class Itemrepository
       items.detect { |key, value| value.description == description}.last
     end
 
-    def find_by_unit_price(unit_price )
-      items.detect { |key, value| value.unit_price  == unit_price.to_s }.last
+    def find_by_unit_price(unit_price)
+      items.detect do |key, value|
+        value.unit_price == unit_price.to_s
+      end.last
     end
 
     def find_by_merchant_id(merchant_id)
@@ -90,7 +92,6 @@ class Itemrepository
     end
 
     def inspect
-      "#<#{self.class} #{@all.size} rows>"
+      "#<#{self.class} #{@items.size} rows>"
     end
-
 end

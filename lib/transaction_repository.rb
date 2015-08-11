@@ -20,8 +20,8 @@ class TransactionRepository
     transactions
   end
 
-  def find_random
-    transactions.keys.sample
+  def random
+    transactions.values.sample
   end
 
   def find_by_id(id)
@@ -34,9 +34,8 @@ class TransactionRepository
 
   def find_by_credit_card_number(credit_card_number)
     transactions.detect do |key, value|
-      # require "pry"; binding.pry
-      value.credit_card_number == credit_card_number
-    end.last
+      value.credit_card_number == credit_card_number.to_i
+    end
   end
 
   def check_cc_exp_date_for_nil(credit_card_expiration_date)
@@ -100,7 +99,7 @@ class TransactionRepository
   end
 
   def inspect
-    "#<#{self.class} #{@all.size} rows>"
+    "#<#{self.class} #{@transactions.size} rows>"
   end
 
 

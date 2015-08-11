@@ -19,8 +19,8 @@ class InvoiceItemRepository
     invoice_items
   end
 
-  def find_random
-    invoice_items.keys.sample
+  def random
+    invoice_items.values.sample
   end
 
   def find_by_id(id)

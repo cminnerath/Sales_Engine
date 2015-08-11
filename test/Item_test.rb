@@ -12,7 +12,7 @@ class ItemTest < Minitest::Test
 
   def setup
     @engine = SalesEngine.new("./test/fixtures")
-    engine.start
+    engine.startup
     @repository = engine.item_repository
   end
 
