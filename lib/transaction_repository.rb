@@ -35,7 +35,7 @@ class TransactionRepository
   def find_by_credit_card_number(credit_card_number)
     transactions.detect do |key, value|
       value.credit_card_number == credit_card_number.to_i
-    end
+    end.last
   end
 
   def check_cc_exp_date_for_nil(credit_card_expiration_date)
