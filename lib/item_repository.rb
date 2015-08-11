@@ -26,7 +26,9 @@ class ItemRepository
     end
 
     def find_by_id(id)
-      items.detect { |key, value| value.id == id }.last
+      # items.detect { |key, value| value.id == id }.last
+      matches = items.select {|key, value| value.id == id }.to_a
+      matches.map {|key, value| value}
     end
 
     def find_by_name(name)

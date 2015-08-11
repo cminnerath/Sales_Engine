@@ -84,8 +84,9 @@ class SalesEngine
   end
 
   def find_item_by_invoice_item_id(item_id)
-    item_id = item_id[0].invoice_id
-    item_repository.find_by_id(item_id)
+    item_id = item_id.flat_map do |item|
+      item_repository.find_by_id(item.item_id)
+    end
   end
 
 end
