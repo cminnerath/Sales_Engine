@@ -3,8 +3,8 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require "./lib/invoice"
-require "./lib/sales_engine"
+require_relative "../lib/invoice"
+require_relative "../lib/sales_engine"
 
 class InvoiceTest < Minitest::Test
 
@@ -12,7 +12,7 @@ class InvoiceTest < Minitest::Test
 
   def setup
     @engine = SalesEngine.new("./test/fixtures")
-    engine.start
+    engine.startup
     @repo = engine.invoice_repo
   end
 

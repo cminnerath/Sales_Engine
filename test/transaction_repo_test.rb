@@ -3,9 +3,9 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require "./lib/transaction"
-require "./lib/transaction_repo"
-require "./lib/sales_engine"
+require_relative "../lib/transaction"
+require_relative "../lib/transaction_repo"
+require_relative "../lib/sales_engine"
 
 class TransactionRepoTest < Minitest::Test
 

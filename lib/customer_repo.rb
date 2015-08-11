@@ -68,4 +68,8 @@ class CustomerRepo
     sales_engine.find_invoices_by_customer(id)
   end
 
+  def inspect
+    "#<#{self.class} #{@database.size} rows>"
+  end  
+
 end

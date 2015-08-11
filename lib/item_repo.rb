@@ -74,7 +74,7 @@ class ItemRepo
       end
       matches.map {|key, value| value}
     end
-    
+
     def find_all_by_creation_date(created_at)
       matches = items.select {|key, value| value.created_at == created_at }.to_a
       matches.map {|key, value| value}
@@ -89,5 +89,8 @@ class ItemRepo
       sales_engine.find_merchant_by_item(merchant_id)
     end
 
+    def inspect 
+      "#<#{self.class} #{@all.size} rows>"
+    end
 
 end

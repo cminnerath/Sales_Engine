@@ -3,9 +3,9 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require "./lib/invoice"
-require "./lib/invoice_repo"
-require "./lib/sales_engine"
+require_relative "../lib/invoice"
+require_relative "../lib/invoice_repo"
+require_relative "../lib/sales_engine"
 
 class InvoiceRepoTest < Minitest::Test
 

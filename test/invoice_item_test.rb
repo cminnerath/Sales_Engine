@@ -3,8 +3,8 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require "./lib/invoice_item"
-require "./lib/sales_engine"
+require_relative "../lib/invoice_item"
+require_relative "../lib/sales_engine"
 
 class InvoiceItemTest < Minitest::Test
 
@@ -62,5 +62,5 @@ class InvoiceItemTest < Minitest::Test
     item = invoice_item.item
     assert_equal "Item Nemo Facere", item.name
   end
-  
+
 end
