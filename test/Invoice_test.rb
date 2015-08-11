@@ -56,7 +56,13 @@ class InvoiceTest < Minitest::Test
   def test_it_can_return_a_collection_of_associated_items_by_way_of_invoice_items
     invoice = repository.find_by_id(4)
     invoice_item = invoice.items
-    assert_equal "Item Nemo Facere", invoice_item.name
+    assert_equal Array, invoice_item.class
+  end
+
+  def test_it_can_return_an_instance_of_customer_for_id
+    invoice = repository.find_by_customer_id(1)
+    invoice_customer = invoice.customer
+    assert_equal "Joey", invoice_customer.first_name
   end
 
 end

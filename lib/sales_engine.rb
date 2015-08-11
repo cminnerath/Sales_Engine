@@ -89,6 +89,10 @@ class SalesEngine
     end
   end
 
+  def find_customer_by_invoice(customer_id)
+    customer_repository.find_by_id(customer_id)
+  end
+
 end
 
 if __FILE__ == $0

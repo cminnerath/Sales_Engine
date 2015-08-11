@@ -94,6 +94,10 @@ class InvoiceRepository
     sales_engine.find_item_by_invoice_item_id(item_id)
   end
 
+  def find_customer_by_invoice(customer_id)
+    sales_engine.find_customer_by_invoice(customer_id)
+  end
+
   def inspect
     "#<#{self.class} #{@invoice.size} rows>"
   end
