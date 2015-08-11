@@ -8,6 +8,7 @@ class TransactionRepository
   def initialize(rows, sales_engine)
     @transactions ||= load_transactions(rows)
     @sales_engine = sales_engine
+
   end
 
   def load_transactions(rows)
