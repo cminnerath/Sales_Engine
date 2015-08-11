@@ -40,6 +40,7 @@ class ItemRepository
     end
 
     def find_by_unit_price(unit_price)
+      require "pry";binding.pry
       items.detect do |key, value|
         value.unit_price == unit_price.to_s
       end.last
