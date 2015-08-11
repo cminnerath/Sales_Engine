@@ -1,7 +1,7 @@
 require_relative 'customer'
 require_relative 'customer_loader'
 
-class CustomerRepo
+class CustomerRepository
 
   attr_reader :customers, :sales_engine
 
@@ -20,8 +20,8 @@ class CustomerRepo
     customers
   end
 
-  def find_random
-    customers.keys.sample
+  def random
+    customers.values.sample
   end
 
   def find_by_id(id)
@@ -70,6 +70,6 @@ class CustomerRepo
 
   def inspect
     "#<#{self.class} #{@database.size} rows>"
-  end  
+  end
 
 end

@@ -1,7 +1,7 @@
 require_relative 'transaction'
 require_relative './transaction_loader'
 
-class TransactionRepo
+class TransactionRepository
 
   attr_reader :transactions, :sales_engine
 
@@ -99,7 +99,7 @@ class TransactionRepo
     sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
-  def inspect 
+  def inspect
     "#<#{self.class} #{@all.size} rows>"
   end
 

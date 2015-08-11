@@ -1,7 +1,7 @@
 require_relative 'merchant'
 require_relative './merchant_loader'
 
-class MerchantRepo
+class MerchantRepository
 
   attr_accessor :merchants, :sales_engine
 
@@ -69,7 +69,7 @@ class MerchantRepo
     sales_engine.find_invoices_for_merchant(merchant_id)
   end
 
-  def inspect 
+  def inspect
     "#<#{self.class} #{@all.size} rows>"
   end
 end

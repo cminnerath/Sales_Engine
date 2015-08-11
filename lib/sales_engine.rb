@@ -1,25 +1,25 @@
 require 'csv'
-require_relative 'customer_repo'
+require_relative 'customer_repository'
 require_relative 'customer_loader'
-require_relative 'merchant_repo'
+require_relative 'merchant_repository'
 require_relative 'merchant_loader'
-require_relative 'item_repo'
+require_relative 'item_repository'
 require_relative "item_loader"
-require_relative 'transaction_repo'
+require_relative 'transaction_repository'
 require_relative "transaction_loader"
-require_relative "invoice_repo"
+require_relative "invoice_repository"
 require_relative "invoice_loader"
-require_relative "invoice_item_repo"
+require_relative "invoice_item_repository"
 require_relative "invoice_item_loader"
 
 class SalesEngine
 
-  attr_reader   :customer_data,    :customer_repo,
-                :merchant_data,    :merchant_repo,
-                :invoice_data,     :invoice_repo,
-                :item_data,        :item_repo,
-                :invoice_item_data,:invoice_item_repo,
-                :transaction_data, :transaction_repo
+  attr_reader   :customer_data,    :customer_repository,
+                :merchant_data,    :merchant_repository,
+                :invoice_data,     :invoice_repository,
+                :item_data,        :item_repository,
+                :invoice_item_data,:invoice_item_repository,
+                :transaction_data, :transaction_repository
 
   def initialize(directory = "./data")
     @customer_data        = CustomerLoader.new.load_all("#{directory}/customers.csv")
@@ -31,12 +31,12 @@ class SalesEngine
   end
 
   def startup
-    @customer_repo      ||= CustomerRepo.new(@customer_data, self)
-    @merchant_repo      ||= MerchantRepo.new(@merchant_data, self)
-    @invoice_repo       ||= InvoiceRepo.new(@invoice_data, self)
-    @transaction_repo   ||= TransactionRepo.new(@transaction_data, self)
-    @item_repo          ||= ItemRepo.new(@item_data, self)
-    @invoice_item_repo  ||= InvoiceItemRepo.new(@invoice_item_data, self)
+    @customer_repository      ||= CustomerRepository.new(@customer_data, self)
+    @merchant_repository      ||= MerchantRepository.new(@merchant_data, self)
+    @invoice_repository       ||= InvoiceRepository.new(@invoice_data, self)
+    @transaction_repo   ||= TransactionRepository.new(@transaction_data, self)
+    @item_repo          ||= ItemRepository.new(@item_data, self)
+    @invoice_item_repo  ||= InvoiceItemRepository.new(@invoice_item_data, self)
   end
 
   def find_customer_by_id(id)
