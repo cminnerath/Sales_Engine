@@ -24,6 +24,7 @@ class InvoiceItem
   end
 
   def item
-    repository.find_item_by_invoice(item_id)
+    repository.find_item_by_invoice(item_id).last
   end
+
 end
