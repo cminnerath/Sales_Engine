@@ -30,7 +30,7 @@ class SalesEngine
     @invoice_item_data    = InvoiceItemLoader.new.load_all("#{directory}/invoice_items.csv")
   end
 
-  def start
+  def startup
     @customer_repo      ||= CustomerRepo.new(@customer_data, self)
     @merchant_repo      ||= MerchantRepo.new(@merchant_data, self)
     @invoice_repo       ||= InvoiceRepo.new(@invoice_data, self)
@@ -92,6 +92,6 @@ end
 
 if __FILE__ == $0
   engine = SalesEngine.new
-  engine.start
+  engine.startup
   require "pry";binding.pry
 end
