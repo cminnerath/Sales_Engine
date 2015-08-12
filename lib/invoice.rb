@@ -31,12 +31,12 @@ class Invoice
 
   def items
     item_id = invoice_items
-    # require "pry"; binding.pry
     repository.find_item_by_invoice_item_id(item_id)
   end
 
   def customer
     repository.find_customer_by_invoice(customer_id)
   end
+
 
 end

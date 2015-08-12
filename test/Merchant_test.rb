@@ -53,4 +53,14 @@ class MerchantTest < Minitest::Test
     assert_equal [12], invoices.map {|invoice| invoice.id}
   end
 
+  def test_if_merchant_id_can_return_its_revenue
+    merchant = repository.find_by_id(8)
+    assert_equal 393300, merchant.revenue
+  end
+
+
+
+
+
+
 end
