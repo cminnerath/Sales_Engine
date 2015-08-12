@@ -64,8 +64,13 @@ class CustomerTest < Minitest::Test
 
   def test_it_can_sort_successfully
     customer = repository.find_by_id(1)
-    assert_equal customer.find_successful_invoices.uniq,
-    customer.sort_successful_ids.keys
+    assert_equal 26,
+    customer.sort_successful_ids.flatten.count
+  end
+
+  def test_it_finds_favorite_merchant
+    customer = repository.find_by_id(1)
+    assert_equal "Dicki-Bednar", customer.favorite_merchant.name
   end
 
 

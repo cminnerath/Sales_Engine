@@ -72,6 +72,10 @@ class CustomerRepository
     sales_engine.find_transactions_for_invoice(id)
   end
 
+  def find_favorite_merchant(id)
+    sales_engine.find_favorite_merchant(id)
+  end
+
   def inspect
     "#<#{self.class} #{@customers.size} rows>"
   end

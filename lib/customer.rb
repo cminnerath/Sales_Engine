@@ -35,11 +35,17 @@ class Customer
         repository.find_invoices_by_customer(transaction.invoice_id)
       end
       relevent.flat_map {|invoice| invoice.merchant_id}
+      require "pry";binding.pry
     end
 
     def sort_successful_ids
-      find_successful_invoices.inject(Hash.new(0)) {|key, value| key[value] +=1; key}
+      counted = find_successful_invoices.inject(Hash.new(0)) {|key, value| key[value] +=1; key}
+      counted.sort_by {|key, value| -value}
+      # require "pry";binding.pry
     end
 
+    def favorite_merchant
+      repository.find_favorite_merchant(sort_successful_ids.first[0])
+    end
 
 end
