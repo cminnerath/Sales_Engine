@@ -12,9 +12,9 @@ class Invoice
     @customer_id    = parameters[:customer_id].to_i
     @merchant_id    = parameters[:merchant_id].to_i
     @status         = parameters[:status]
-    @created_at     = parameters[:created_at]
+    @created_at     = Date.parse(parameters[:created_at])
     @updated_at     = parameters[:updated_at]
-    @repository           = repository
+    @repository     = repository
   end
 
   def transactions

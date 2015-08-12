@@ -13,7 +13,7 @@ class InvoiceItem
     @item_id        = parameters[:item_id].to_i
     @invoice_id     = parameters[:invoice_id].to_i
     @quantity       = parameters[:quantity].to_i
-    @unit_price     = parameters[:unit_price]
+    @unit_price     = BigDecimal.new(parameters[:unit_price])
     @created_at     = parameters[:created_at]
     @updated_at     = parameters[:updated_at]
     @repository           = repository

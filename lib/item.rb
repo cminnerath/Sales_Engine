@@ -15,7 +15,7 @@ class Item
       @id           = parameters[:id].to_i
       @name         = parameters[:name]
       @description  = parameters[:description]
-      @unit_price   = (BigDecimal.new(parameters[:unit_price]) /100).to_f
+      @unit_price   = BigDecimal.new(parameters[:unit_price])
       # require "pry";binding.pry
       @merchant_id   = parameters[:merchant_id].to_i
       @created_at   = parameters[:created_at]
