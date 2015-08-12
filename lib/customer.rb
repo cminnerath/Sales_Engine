@@ -30,4 +30,10 @@ class Customer
       transactions.select {|transaction| transaction.result == "success"}
     end
 
+    def find_successful_invoices
+      relevent = successful_transactions.flat_map do |transaction|
+        repository.find_invoices_by_customer(transaction.invoice_id)
+      end
+    end
+
 end

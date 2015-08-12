@@ -54,8 +54,12 @@ class CustomerTest < Minitest::Test
 
   def test_it_can_find_successful_transactions
     customer = repository.find_by_id(1)
-    require "pry";binding.pry
     assert_equal 3, customer.successful_transactions.count
+  end
+
+  def test_it_can_find_successful_invoices
+    customer = repository.find_by_id(1)
+    assert_equal 5, customer.find_successful_invoices
   end
 
 
