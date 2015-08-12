@@ -97,6 +97,10 @@ class SalesEngine
     invoice_item_repository.find_all_by_item_id(id)
   end
 
+  def find_favorite_merchant(id)
+    merchant_repository.find_by_id(id)
+  end
+
 end
 
 if __FILE__ == $0

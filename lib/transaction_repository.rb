@@ -98,6 +98,12 @@ class TransactionRepository
     sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
+  def successful_transactions
+    transactions.map {|key, value| value}.select do |transaction|
+    transaction if transaction.successful?
+    end
+  end
+
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end

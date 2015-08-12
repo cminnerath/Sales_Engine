@@ -57,10 +57,5 @@ class MerchantTest < Minitest::Test
     merchant = repository.find_by_id(8)
     assert_equal 393300, merchant.revenue
   end
-
-
-
-
-
-
+  
 end

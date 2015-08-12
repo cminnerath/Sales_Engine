@@ -52,4 +52,33 @@ class CustomerTest < Minitest::Test
     assert_equal 3, customer.transactions.size
   end
 
+  def test_it_can_find_successful_transactions
+    customer = repository.find_by_id(1)
+    assert_equal 7, customer.successful_transactions.count
+  end
+
+  def test_it_can_find_successful_invoices_and_output_merchant_ids
+    customer = repository.find_by_id(1)
+    assert_equal 18, customer.find_successful_invoices.count
+  end
+
+  def test_it_can_sort_successfully
+    customer = repository.find_by_id(1)
+    assert_equal 26,
+    customer.sort_successful_ids.flatten.count
+  end
+
+  def test_it_finds_favorite_merchant
+    @engine = SalesEngine.new("./data")
+    engine.startup
+    customer = repository.find_by_id(2)
+    assert_equal "Dicki-Bednar", customer.favorite_merchant.name
+  end
+
+  # def test_it_finds_favorite_merchant_deux
+  #   customer = repository.find_by_id(2)
+  #   assert_equal "Dicki-Bednar", customer.favorite_merchant.name
+  # end
+
+
 end
