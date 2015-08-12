@@ -26,7 +26,7 @@ class ItemRepositoryTest < Minitest::Test
 
   def test_it_finds_an_item_by_id
     result = repository.items["1"]
-    assert_equal result, repository.find_by_id(1)
+    assert_equal result, repository.find_by_id(1).first
   end
 
   def test_it_finds_an_item_by_its_name

@@ -24,6 +24,7 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_by_id
+
     result = repository.invoice["1"]
     assert_equal result, repository.find_by_id(1)
   end
@@ -40,7 +41,7 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def test_it_can_find_by_creation_date
     result = repository.invoice["1"]
-    assert_equal result, repository.find_by_creation_date("2012-03-25 09:54:09 UTC")
+    assert_equal result, repository.find_by_creation_date(Date.parse("2012-03-25 09:54:09 UTC"))
   end
 
   def test_it_can_find_by_updated_date
