@@ -18,7 +18,7 @@ class ItemTest < Minitest::Test
 
   def test_it_can_access_id
 		item = repository.find_by_id(1)
-    assert_equal 1 , item.id
+    assert_equal 1 , item[0].id
   end
 
   def test_it_can_access_item_name
@@ -34,7 +34,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_can_access_item_unit_price
-    item = repository.find_by_unit_price("75107")
+    item = repository.find_by_unit_price("751.07")
     assert_equal 1, item.id
   end
 

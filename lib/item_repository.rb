@@ -40,7 +40,7 @@ class ItemRepository
 
     def find_by_unit_price(unit_price)
       items.detect do |key, value|
-        value.unit_price == unit_price
+        value.unit_price.to_f == unit_price.to_f
       end.last
     end
 
