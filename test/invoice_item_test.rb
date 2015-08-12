@@ -38,7 +38,7 @@ class InvoiceItemTest < Minitest::Test
 
   def test_it_can_access_by_unit_price
     invoice_item = repository.find_by_id(1)
-    assert_equal "13635", invoice_item.unit_price
+    assert_equal 136.35, invoice_item.unit_price.to_f / 100
   end
 
   def test_it_can_access_by_creation_date

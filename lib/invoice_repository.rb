@@ -1,5 +1,6 @@
 require_relative 'invoice'
 require_relative './invoice_loader'
+require 'date'
 
 class InvoiceRepository
   attr_reader :invoice, :sales_engine
@@ -24,7 +25,7 @@ class InvoiceRepository
   end
 
   def find_by_id(id)
-    invoice.detect { |key, value| value.id == id }.last
+    invoice.detect {|key, value| value.id == id }.last
   end
 
   def find_by_customer_id(customer_id)
@@ -40,11 +41,11 @@ class InvoiceRepository
   end
 
   def find_by_creation_date(created_at)
-    invoice.detect { |key, value| value.created_at == created_at }.last
+    invoice.detect { |key, value| value.created_at == created_at}.last
   end
 
   def find_by_updated_date(updated_at)
-    invoice.detect { |key, value| value.created_at == updated_at }.last
+    invoice.detect { |key, value| value.updated_at == updated_at }.last
   end
 
   def find_all_by_customer_id(customer_id)

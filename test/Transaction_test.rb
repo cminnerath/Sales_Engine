@@ -28,7 +28,7 @@ class TransactionTest < Minitest::Test
 
   def test_it_can_access_by_cc_number
     tran = repository.find_by_credit_card_number(4580251236515201)
-    assert_equal 2, tran.size
+    assert_equal 4580251236515201, tran.credit_card_number
   end
 
   def test_it_can_access_by_result

@@ -40,7 +40,9 @@ class InvoiceItemRepository
   end
 
   def find_by_unit_price(price)
-    invoice_items.detect { |key, value| value.unit_price == price }.last
+    invoice_items.detect do  |key, value|
+       value.unit_price == price
+    end.last
   end
 
   def find_by_creation_date(created_at)
@@ -72,7 +74,9 @@ class InvoiceItemRepository
   end
 
   def find_all_by_unit_price(price)
-    matches = invoice_items.select {|key, value| value.unit_price == price }
+    matches = invoice_items.select do |key, value|
+      value.unit_price == price
+    end
     matches.map {|key, value| value}
   end
 

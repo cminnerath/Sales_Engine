@@ -38,7 +38,7 @@ class InvoiceTest < Minitest::Test
   def test_it_returns_a_collection_of_associated_transaction_instances
     invoice = repository.find_by_id(12)
     transactions = invoice.transactions
-    assert_equal [11, 12], transactions.map {|invoice| invoice.id}
+    assert_equal [11, 12 ,15], transactions.map {|invoice| invoice.id}
   end
 
   def test_it_returns_a_merchant_associated_with_an_invoice_id
