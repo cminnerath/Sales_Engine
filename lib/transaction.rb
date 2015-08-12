@@ -9,22 +9,23 @@ class Transaction
               :updated_at,
               :repository
 
-    def initialize(parameters, repository)
-      @id                             = parameters[:id].to_i
-      @invoice_id                     = parameters[:invoice_id].to_i
-      @credit_card_number             = parameters[:credit_card_number].to_i
-      @credit_card_expiration_date    = parameters[:credit_card_expiration_date]
-      @result                         = parameters[:result]
-      @created_at                     = parameters[:created_at]
-      @updated_at                     = parameters[:updated_at]
-      @repository                           = repository
-    end
+  def initialize(parameters, repository)
+    @id                             = parameters[:id].to_i
+    @invoice_id                     = parameters[:invoice_id].to_i
+    @credit_card_number             = parameters[:credit_card_number].to_i
+    @credit_card_expiration_date    = parameters[:credit_card_expiration_date]
+    @result                         = parameters[:result]
+    @created_at                     = parameters[:created_at]
+    @updated_at                     = parameters[:updated_at]
+    @repository                           = repository
+  end
 
-    def invoice
-      repository.find_invoice_by_transaction(invoice_id)
-    end
+  def invoice
+    repository.find_invoice_by_transaction(invoice_id)
+  end
 
-    def successful?
-      result == "success"
-    end
+  def success?
+    result == "success"
+  end
+
 end
