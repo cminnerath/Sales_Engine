@@ -83,4 +83,8 @@ class TransactionRepositoryTest < Minitest::Test
   def test_it_finds_all_matches_by_updated_date
     assert_equal 12, repository.find_all_by_updated_date("2012-03-27 14:54:10 UTC").count
   end
+
+  def test_if_finds_successful_transactions
+    assert_equal 12, repository.sucessful_transactions.count
+  end
 end
