@@ -22,4 +22,21 @@ class Merchant
   def invoices
     repository.find_invoices_for_merchant(id)
   end
+  #revenue returns the total revenue for that merchant across all transactions
+  def revenue
+    successful_invoices(invoices).flat_map do |invoice|
+      invoice.invoice_items.flat_map do |invoice_item|
+        invoice_item.unit_price.to_i * invoice_item.quantity.to_i
+      end
+    end.reduce(:+)
+  end
+
+  def successful_invoices(invoice_collection)
+    invoice_collection.select {|invoice| invoice.transactions.any?{|transaction| transaction.result == "success"}}
+  end
+
+
+
+
+
 end
