@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Merchant
 
   attr_reader :id,
@@ -12,7 +14,7 @@ class Merchant
     @name                           = parameters[:name]
     @created_at                     = parameters[:created_at]
     @updated_at                     = parameters[:updated_at]
-    @repository                           = repository
+    @repository                     = repository
   end
 
   def items
@@ -26,15 +28,15 @@ class Merchant
   def total_revenue
     successful_invoices(invoices).flat_map do |invoice|
       invoice.invoice_items.flat_map do |invoice_item|
-        invoice_item.unit_price.to_i * invoice_item.quantity.to_i
+        (invoice_item.unit_price * invoice_item.quantity.to_i) /100
       end
     end.reduce(:+)
   end
-## successful invoice items by date?
+
   def revenue_by_date(date)
-    successful_invoices_by_date(date).flat_map do |invoice|
+    revenue = successful_invoices_by_date(date).flat_map do |invoice|
       invoice.invoice_items.flat_map do |invoice_item|
-        invoice_item.unit_price.to_i * invoice_item.quantity.to_i
+        (invoice_item.unit_price * invoice_item.quantity.to_i) /100
       end
     end.reduce(:+)
   end
@@ -45,8 +47,7 @@ class Merchant
 
   def successful_invoices_by_date(date)
     successful_invoices(invoices).select do |invoice|
-      invoice.updated_at.strftime("%a,%e %b %Y") == date
-          require "pry";binding.pry
+      invoice.created_at == date
     end
   end
 
