@@ -26,4 +26,8 @@ class Customer
       end
     end
 
+    def successful_transactions
+      transactions.select {|transaction| transaction.result == "success"}
+    end
+
 end

@@ -52,4 +52,11 @@ class CustomerTest < Minitest::Test
     assert_equal 3, customer.transactions.size
   end
 
+  def test_it_can_find_successful_transactions
+    customer = repository.find_by_id(1)
+    require "pry";binding.pry
+    assert_equal 3, customer.successful_transactions.count
+  end
+
+
 end
