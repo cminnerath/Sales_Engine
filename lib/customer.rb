@@ -38,6 +38,7 @@ class Customer
     end
 
     def sort_successful_ids
+      find_successful_invoices.inject(Hash.new(0)) {|key, value| key[value] +=1; key}
     end
 
 
