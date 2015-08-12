@@ -33,7 +33,7 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_it_finds_single_match_by_credit_card_number
     result = repository.transactions[3]
-    assert_equal result, repository.find_by_credit_card_number('4354495077693036')
+    assert_equal result, repository.find_by_credit_card_number(4354495077693036)
   end
 
   def test_it_finds_single_match_by_credit_card_exp_date
@@ -62,8 +62,8 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_it_finds_all_matches_for_credit_card_number
-    result = 2
-    assert_equal result, repository.find_all_by_credit_card("4017503416578382").length
+    result = 3
+    assert_equal result, repository.find_all_by_credit_card(4017503416578382).length
   end
 
   def test_it_finds_all_matches_for_credit_card_exp
@@ -85,6 +85,6 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_if_finds_successful_transactions
-    assert_equal 12, repository.sucessful_transactions.count
+    assert_equal 10, repository.successful_transactions.count
   end
 end

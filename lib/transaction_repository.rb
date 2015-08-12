@@ -99,8 +99,8 @@ class TransactionRepository
   end
 
   def successful_transactions
-    success = transactions.select do |transaction|
-      transaction if transaction.successful?
+    transactions.map {|key, value| value}.select do |transaction|
+    transaction if transaction.successful?
     end
   end
 
