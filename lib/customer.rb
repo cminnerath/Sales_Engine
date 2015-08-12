@@ -34,6 +34,11 @@ class Customer
       relevent = successful_transactions.flat_map do |transaction|
         repository.find_invoices_by_customer(transaction.invoice_id)
       end
+      relevent.flat_map {|invoice| invoice.merchant_id}
     end
+
+    def sort_successful_ids
+    end
+
 
 end
