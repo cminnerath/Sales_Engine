@@ -69,9 +69,16 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_finds_favorite_merchant
-    customer = repository.find_by_id(1)
+    @engine = SalesEngine.new("./data")
+    engine.startup
+    customer = repository.find_by_id(2)
     assert_equal "Dicki-Bednar", customer.favorite_merchant.name
   end
+
+  # def test_it_finds_favorite_merchant_deux
+  #   customer = repository.find_by_id(2)
+  #   assert_equal "Dicki-Bednar", customer.favorite_merchant.name
+  # end
 
 
 end

@@ -43,7 +43,7 @@ class Customer
     end
 
     def favorite_merchant
-      repository.find_favorite_merchant(sort_successful_ids.first[0])
+      repository.find_favorite_merchant(sort_successful_ids.flatten[0])
     end
 
 end

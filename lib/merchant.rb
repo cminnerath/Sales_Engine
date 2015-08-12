@@ -45,7 +45,7 @@ class Merchant
 
   def successful_invoices_by_date(date)
     successful_invoices(invoices).select do |invoice|
-      invoice.updated_at == date
+      invoice.updated_at.strftime("%a,%e %b %Y") == date
           require "pry";binding.pry
     end
   end
