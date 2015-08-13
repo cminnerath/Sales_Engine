@@ -24,7 +24,7 @@ class Merchant
   def invoices
     repository.find_invoices_for_merchant(id)
   end
-  #revenue returns the total revenue for that merchant across all transactions
+
   def total_revenue
     successful_invoices(invoices).flat_map do |invoice|
       invoice.invoice_items.flat_map do |invoice_item|
@@ -43,6 +43,10 @@ class Merchant
 
   def successful_invoices(invoice_collection)
     invoice_collection.select {|invoice| invoice.transactions.any?{|transaction| transaction.result == "success"}}
+  end
+
+  def unsuccessful_invoices(invoice_collection)
+    invoice_collection.select {|invoice| invoice.transactions.any?{|transaction| transaction.result == "failed"}}
   end
 
   def successful_invoices_by_date(date)
