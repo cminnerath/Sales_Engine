@@ -56,4 +56,7 @@ class Item
       best_day[0]
     end
 
+    def revenue
+      
+    end
 end
