@@ -57,7 +57,6 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_can_determine_top_merchant_by_total_revenue
-    skip
     assert_equal 8, repository.most_revenue(1).first.id
   end
 

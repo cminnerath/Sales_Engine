@@ -99,4 +99,10 @@ class ItemRepository
     def inspect
       "#<#{self.class} #{@items.size} rows>"
     end
+
+    def most_revenue(rank)
+      items.map { |_, item| item}.sort_by do |item|
+        item.revenue
+      end.reverse[0...rank]
+    end
 end

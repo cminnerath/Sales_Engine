@@ -73,13 +73,28 @@ class Merchant
   def favorite_customer
     repository.sales_engine.customer_repository.find_by_id(favorite_customer_id)
   end
-
+  
   def items_sold
-     items.flat_map do |item|
-      item.invoice_items.map do |invoice_item|
-        invoice_item.quantity
+    successful_invoices(invoices).flat_map do |invoice|
+      invoice.invoice_items.flat_map do |invoice_item|
+        invoice_item.unit_price
       end
     end.reduce(:+)
   end
 
+  def most_quantity
+    repository.find_quantity_from(successful_invoices).reduce(:+)
+  end
+
+  def paid_invoice_items
+    successful_invoices(invoices).flat_map do |invoice|
+      invoice.invoice_items
+    end
+  end
+
+  def merchant_items_sold
+   paid_invoice_items.map do |invoice_item|
+     invoice_item.quantity
+   end.reduce(:+)
+ end
 end

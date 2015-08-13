@@ -76,12 +76,20 @@ class MerchantRepository
   end
 
   def most_items(rank)
-    thingy = merchants.map { |_, merchant| merchant}.sort_by do |merchant|
-      merchant.items_sold
+    merchants.map { |_, merchant| merchant}.sort_by do |merchant|
+      merchant.merchant_items_sold
     end.reverse[0...rank]
+  end
+
+  def revenue(date)
+    remove_nil_revenue(date).reduce(0) do |sum, merchant|
+      sum + merchant.revenue(date)
+    end
   end
 
   def inspect
     "#<#{self.class} #{@merchants.size} rows>"
   end
+
+
 end
