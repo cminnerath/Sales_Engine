@@ -3,6 +3,7 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
+require 'bigdecimal'
 require_relative "../lib/item"
 require_relative "../lib/sales_engine"
 
@@ -34,7 +35,8 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_can_access_item_unit_price
-    item = repository.find_by_unit_price("751.07")
+    price = BigDecimal.new("751.07")
+    item = repository.find_by_unit_price(price)
     assert_equal 1, item.id
   end
 
