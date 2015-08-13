@@ -48,14 +48,26 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_returns_a_collection_of_invoices_for_a_given_merchant
-    merchant = repository.find_by_id(8)
+    merchant = repository.find_by_id(14)
     invoices = merchant.invoices
-    assert_equal [12], invoices.map {|invoice| invoice.id}
+    assert_equal  [17, 18, 19, 20], invoices.map {|invoice| invoice.id}
   end
 
   def test_if_merchant_id_can_return_its_revenue
+    skip
     merchant = repository.find_by_id(8)
     assert_equal 393300, merchant.revenue
   end
-  
+
+  def test_we_can_find_the_a_merchants_successful_invoices
+    merchant = repository.find_by_id(14)
+    result = merchant.successful_invoices(merchant.invoices).count
+    assert_equal 4, result
+  end
+
+  def test_we_can_find_the_a_merchants_successful_invoices
+    merchant = repository.find_by_id(14)
+    result = merchant.favorite_customer
+    assert_equal 3, result
+  end
 end
