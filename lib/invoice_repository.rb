@@ -99,6 +99,10 @@ class InvoiceRepository
     sales_engine.find_customer_by_invoice(customer_id)
   end
 
+  def charge_credit_card(input, invoice_id)
+    sales_engine.charge_credit_card(input, invoice_id)
+  end
+
   def inspect
     "#<#{self.class} #{@invoice.size} rows>"
   end

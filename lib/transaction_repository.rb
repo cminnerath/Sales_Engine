@@ -104,9 +104,21 @@ class TransactionRepository
     end
   end
 
+  def create(data, invoice_id)
+    parameters = {
+      id: transactions.to_a.last[0].to_i + 1,
+      invoice_id: invoice_id,
+      credit_card_number: data[:credit_card_expiration_date],
+      result: data[:result],
+      created_at: Date.today.strftime("%F"),
+      updated_at: Date.today.strftime("%F")
+    }
+  new_transaction = Transaction.new(parameters, self)
+  transactions[:id] = new_transaction
+  new_transaction
+end
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end
-
 
 end
