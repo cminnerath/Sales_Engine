@@ -76,6 +76,4 @@ class MerchantTest < Minitest::Test
     assert_equal 360, merchant.items_sold
   end
 
-
-
 end
