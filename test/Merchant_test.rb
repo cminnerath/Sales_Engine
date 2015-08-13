@@ -67,8 +67,8 @@ class MerchantTest < Minitest::Test
 
   def test_we_can_find_the_a_merchants_successful_invoices
     merchant = repository.find_by_id(14)
-    result = merchant.favorite_customer
-    assert_equal 3, result
+    result = merchant.favorite_customer.id
+    assert_equal 4, result
   end
 
   def test_a_single_merchant_can_return_the_total_items_sold
