@@ -62,4 +62,18 @@ class Merchant
       revenue_by_date(date)
     end
   end
+
+  def favorite_customer_id
+    a = successful_invoices(invoices).map do |invoice|
+      invoice.customer_id
+    end
+    a.uniq.max_by{ |id| a.count( id ) }
+  end
+
+  def favorite_customer
+    repository.sales_engine.customer_repository.find_by_id(favorite_customer_id)
+  end
+
+
+
 end
