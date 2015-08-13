@@ -70,4 +70,12 @@ class MerchantTest < Minitest::Test
     result = merchant.favorite_customer
     assert_equal 3, result
   end
+
+  def test_a_single_merchant_can_return_the_total_items_sold
+    merchant = repository.find_by_id(15)
+    assert_equal 360, merchant.items_sold
+  end
+
+
+
 end

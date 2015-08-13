@@ -69,6 +69,18 @@ class MerchantRepository
     sales_engine.find_invoices_for_merchant(merchant_id)
   end
 
+  def most_revenue(rank)
+    merchants.map { |_, merchant| merchant}.sort_by do |merchant|
+      merchant.revenue
+    end.reverse[0...rank]
+  end
+
+  def most_items(rank)
+    thingy = merchants.map { |_, merchant| merchant}.sort_by do |merchant|
+      merchant.items_sold
+    end.reverse[0...rank]
+  end
+
   def inspect
     "#<#{self.class} #{@merchants.size} rows>"
   end

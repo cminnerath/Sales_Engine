@@ -52,7 +52,18 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_finds_all_matches_by_updated_date
+    skip
     assert_equal 5, repository.find_all_by_updated_date("2012-03-27 14:54:00 UTC").count
   end
 
+  def test_it_can_determine_top_merchant_by_total_revenue
+    skip
+    assert_equal 8, repository.most_revenue(1).first.id
+  end
+
+  
+
+  def test_it_can_return_the_merchants_with_the_most_items_sold
+    assert_equal 15, repository.most_items(1).first.id
+  end
 end
