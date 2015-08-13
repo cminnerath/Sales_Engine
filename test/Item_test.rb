@@ -61,4 +61,16 @@ class ItemTest < Minitest::Test
     assert_equal "Schroeder-Jerde", merchants.name
   end
 
+  def test_invoice_dates
+    item = repository.find_by_id(1)
+    assert_equal Array, item[0].find_invoices.class
+  end
+
+  def test_invoice_date_calculator
+    @engine = SalesEngine.new("./data")
+    engine.startup
+    item = repository.find_by_id(2)
+    assert_equal 0, item[0].invoice_date_calculator.count
+  end
+
 end
