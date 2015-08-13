@@ -105,6 +105,10 @@ class SalesEngine
     invoice_repository.find_by_id(id)
   end
 
+  def charge_credit_card(data, invoice_id)
+    transaction_repository.create(data, invoice_id)
+  end
+
 end
 
 if __FILE__ == $0

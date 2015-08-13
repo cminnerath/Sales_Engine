@@ -17,7 +17,7 @@ class Transaction
     @result                         = parameters[:result]
     @created_at                     = parameters[:created_at]
     @updated_at                     = parameters[:updated_at]
-    @repository                      = repository
+    @repository                     = repository
   end
 
   def invoice

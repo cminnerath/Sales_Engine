@@ -38,5 +38,9 @@ class Invoice
     repository.find_customer_by_invoice(customer_id)
   end
 
+  def charge(input)
+    repository.charge_credit_card(input, id)
+  end
+
 
 end
